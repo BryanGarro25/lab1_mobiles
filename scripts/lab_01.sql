@@ -32,7 +32,11 @@ telefono  number(10)  not null,
 email   varchar2(50)  not null
 );
 
--- GRANT SELECT, INSERT, UPDATE, DELETE ON T_PEDIDOS TO miusuario;
+alter table lab01_curso add constraint lab01_curso_PK primary key (id_DB);
+alter table lab01_profesor add constraint lab01_profesor_PK primary key (id_DB);
+alter table lab01_curso add constraint lab01_curso_UK unique (codigo);
+alter table lab01_profesor add constraint lab01_profesor_UK unique (cedula);
+
 GRANT SELECT, INSERT, UPDATE, DELETE ON lab01_curso TO lab01;
 GRANT SELECT, INSERT, UPDATE, DELETE ON lab01_profesor TO lab01;
 create sequence sec_curso   start with 1    increment by 1;
