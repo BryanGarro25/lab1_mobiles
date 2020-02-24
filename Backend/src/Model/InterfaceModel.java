@@ -5,10 +5,36 @@
  */
 package Model;
 
+import BusinessLogic.Curso;
+import BusinessLogic.Profesor;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Josue
  */
 public interface InterfaceModel {
-    
+    //--------------------Curso-------------------------- 
+
+    public void insertarCurso(Curso cur) throws Exception;
+
+    public ArrayList<Curso> listarCursos() throws Exception;
+
+    public void modificarCurso(Curso cur) throws Exception;
+
+    public void eliminarCurso(int cod) throws Exception;
+
+    public Curso buscarCurso(int cod) throws Exception;
+
+    //-------------------Profesor-------------------------- 
+    public void insertarProfesor(Profesor profesor) throws Exception;
+
+    public Profesor buscarProfesor(int id) throws Exception;
+
+    public List<Profesor> listarProfesores() throws Exception;
+
+    public void eliminarProfesor(int id) throws Exception;
+
+    public void modificarProfesor(Profesor profesor) throws Exception;
 }

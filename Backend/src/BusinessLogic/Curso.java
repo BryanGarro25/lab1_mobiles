@@ -10,29 +10,33 @@ package BusinessLogic;
  * @author Josue
  */
 public class Curso {
-    private int codigo;
+    private int id;
+    private String codigo;
     private String nombre;
     private int creditos;
     private int horasSemanales;
     
     public Curso(){
-        this.codigo = 0;
+        this.id = 0;
+        this.codigo = new String();
         this.nombre = new String();
         this.creditos = 0;
         this.horasSemanales = 0;
     }
-    public Curso(int codigo, String nombre, int creditos, int horasSemanales) {
+
+    public Curso(int id, String codigo, String nombre, int creditos, int horasSemanales) {
+        this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasSemanales = horasSemanales;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -58,6 +62,10 @@ public class Curso {
 
     public void setHorasSemanales(int horasSemanales) {
         this.horasSemanales = horasSemanales;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

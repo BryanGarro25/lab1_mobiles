@@ -10,18 +10,21 @@ package BusinessLogic;
  * @author Josue
  */
 public class Profesor {
+    private int id;
     private String cedula;
     private String nombre;
     private int telefono;
     private String email;
     
     public Profesor(){
+        this.id = 0;
         this.cedula = new String();
         this.nombre = new String();
         this.telefono = 0;
         this.email = new String();
     }
-    public Profesor(String cedula, String nombre, int telefono, String email) {
+    public Profesor(int id, String cedula, String nombre, int telefono, String email) {
+        this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
