@@ -14,7 +14,7 @@ create user lab01 identified by lab01_DB;
 --ESte usuario es el que va a utilizar el sistema.
 grant create session to lab01;
 
---drop table lab01_curso;
+drop table lab01_curso;
 create table lab01_curso(
 id_DB number (3) ,
 codigo    varchar2(10) not null,
@@ -23,7 +23,7 @@ creditos  number(1)  not null,
 horas_semanales   number(2,1)  not null
 );
 
---drop table lab01_profesor;
+drop table lab01_profesor;
 create table lab01_profesor(
 id_DB number (3) not null,
 cedula    varchar2(10) not null,
@@ -61,6 +61,8 @@ begin
   FROM   dual;
 end auto_increment_lab01_profesor;
 /
+<<<<<<< HEAD
+=======
 CREATE OR REPLACE PACKAGE types
 AS
      TYPE ref_cursor IS REF CURSOR;
@@ -165,8 +167,8 @@ begin
 	delete from lab01_curso where lab01_curso.id_DB = id;
 end;
 /
+>>>>>>> master
 -- Pruebas
 conn lab01/lab01_DB
 insert into lab01_DBA.lab01_curso(codigo, nombre, creditos,horas_semanales) values ('hola','test',2,4.2); 
 insert into lab01_DBA.lab01_profesor (cedula,nombre,telefono,email) values ('123','Juan',0123456,'bryangarroeduarte@gmail.com');
-conn lab01_DBA/lab01_DBA_DB;
