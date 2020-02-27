@@ -23,12 +23,8 @@ public class Servicio {
     protected void conectar() throws SQLException,ClassNotFoundException 
     {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-       // try {
-            conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
-            //conexion = getJdbcMydbsource();
-       /* } catch (NamingException ex) {
-            ex.printStackTrace();
-        }*/
+            conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","lab01_DBA","lab01_DBA_DB");
+    
         
     }
     

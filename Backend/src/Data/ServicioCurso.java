@@ -23,7 +23,7 @@ public class ServicioCurso extends Servicio {
     private static final String ELIMINAR_CURSO = "{call PA_eliminarCurso(?)}";
     private static final String BUSCAR_CURSO = "{?=call PA_buscarCurso(?)}";
     private static final String LISTAR_CURSOS = "{?=call PA_listarCursos}";
-    private static final String MODIFICAR_CURSO = "{call modificarCurso(?,?,?,?,?)}";
+    private static final String MODIFICAR_CURSO = "{call PA_modificarCurso(?,?,?,?,?)}";
     private static ServicioCurso uniqueInstance;
 
     public static ServicioCurso instance() {
@@ -143,6 +143,7 @@ public class ServicioCurso extends Servicio {
                 System.out.println("\nModificación Satisfactoria!");
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new GlobalException("Sentencia no valida");
         } finally {
             try {
@@ -211,6 +212,7 @@ public class ServicioCurso extends Servicio {
                 curso= new Curso(rs.getInt("id_DB"),rs.getString("codigo"),rs.getString("nombre"),rs.getInt("creditos"), rs.getInt("horas_semanales"));
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new GlobalException("Sentencia no valida");
         } finally {
             try {
