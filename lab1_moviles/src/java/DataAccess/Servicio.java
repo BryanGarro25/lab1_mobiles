@@ -22,6 +22,7 @@ public class Servicio {
     }
        protected void conectar() throws SQLException,ClassNotFoundException 
     {
+<<<<<<< HEAD:lab1_moviles/src/java/DataAccess/Servicio.java
             //Class.forName("oracle.jdbc.driver.OracleDriver");
        // try {
           //  conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","cinema","cine123");
@@ -29,6 +30,11 @@ public class Servicio {
        /* } catch (NamingException ex) {
             ex.printStackTrace();
         }*/
+=======
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","lab01_DBA","lab01_DBA_DB");
+    
+>>>>>>> master:Backend/src/Data/Servicio.java
         
     }
         protected void desconectar() throws SQLException{
