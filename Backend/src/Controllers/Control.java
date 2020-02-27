@@ -6,6 +6,7 @@
 package Controllers;
 
 import BusinessLogic.Curso;
+import BusinessLogic.Usuario;
 import Model.InterfaceModel;
 import java.util.List;
 
@@ -70,6 +71,14 @@ public class Control {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    public boolean login(Usuario usuario){
+        try{
+            return this.model.login(usuario);
+        }catch(Exception e){
+            
+            return false;
         }
     }
 }

@@ -156,7 +156,6 @@ create or replace procedure PA_modificarCurso( id in lab01_curso.id_DB%type,
 as 
 begin 
  update lab01_curso set codigo=new_codigo, nombre=new_nombre, creditos=new_creditos, horas_semanales=new_horasSemanales where lab01_curso.id_DB = id;
- commit;
 end;
 /
 

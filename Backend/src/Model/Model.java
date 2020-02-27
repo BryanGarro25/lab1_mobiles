@@ -7,8 +7,10 @@ package Model;
 
 import BusinessLogic.Curso;
 import BusinessLogic.Profesor;
+import BusinessLogic.Usuario;
 import Data.ServicioCurso;
 import Data.ServicioProfesor;
+import Data.ServicioUsuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,5 +84,9 @@ public class Model implements InterfaceModel {
     @Override
     public void modificarProfesor(Profesor profesor) throws Exception {
         ServicioProfesor.instance().modificarProfesor(profesor);
+    }
+    @Override
+    public boolean login(Usuario usuario){
+       return ServicioUsuario.instance().login(usuario);
     }
 }

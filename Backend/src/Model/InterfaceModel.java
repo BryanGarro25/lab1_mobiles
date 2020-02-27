@@ -7,6 +7,7 @@ package Model;
 
 import BusinessLogic.Curso;
 import BusinessLogic.Profesor;
+import BusinessLogic.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,4 +38,6 @@ public interface InterfaceModel {
     public void eliminarProfesor(int id) throws Exception;
 
     public void modificarProfesor(Profesor profesor) throws Exception;
+    
+    public boolean login(Usuario usuario) throws Exception;
 }
