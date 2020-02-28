@@ -1,12 +1,10 @@
+package Data;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 import BusinessLogic.Curso;
-import Data.GlobalException;
-import Data.NoDataException;
-import Data.Servicio;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,7 +49,7 @@ public class ServicioCurso extends Servicio {
 
         try {
             pstmt = conexion.prepareCall(INSERTAR_CURSO);
-            pstmt.setString(1, curso.getCodigo());
+            pstmt.setInt(1, curso.getCodigo());
             pstmt.setString(2, curso.getNombre());
             pstmt.setInt(3, curso.getCreditos());
             pstmt.setInt(4, curso.getHorasSemanales());
@@ -94,7 +92,7 @@ public class ServicioCurso extends Servicio {
             while (rs.next()) {
                 curso = new Curso(
                         rs.getInt("id_DB"),
-                        rs.getString("codigo"),
+                        rs.getInt("codigo"),
                         rs.getString("nombre"),
                         rs.getInt("creditos"),
                         rs.getInt("horas_semanales"));
@@ -133,7 +131,7 @@ public class ServicioCurso extends Servicio {
         try {
             pstmt = conexion.prepareStatement(MODIFICAR_CURSO);
             pstmt.setInt(1, curso.getId());
-            pstmt.setString(2, curso.getCodigo());
+            pstmt.setInt(2, curso.getCodigo());
             pstmt.setString(3, curso.getNombre());
             pstmt.setInt(4, curso.getCreditos());
             pstmt.setInt(5, curso.getHorasSemanales());
@@ -211,7 +209,7 @@ public class ServicioCurso extends Servicio {
             rs = (ResultSet)pstmt.getObject(1);
             if (rs.next()) {
                
-                curso= new Curso(rs.getInt("id_DB"),rs.getString("codigo"),rs.getString("nombre"),rs.getInt("creditos"), rs.getInt("horas_semanales"));
+                curso= new Curso(rs.getInt("id_DB"),rs.getInt("codigo"),rs.getString("nombre"),rs.getInt("creditos"), rs.getInt("horas_semanales"));
             }
         } catch (SQLException e) {
             throw new GlobalException("Sentencia no valida");

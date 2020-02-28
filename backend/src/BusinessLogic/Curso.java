@@ -15,18 +15,21 @@ public class Curso {
     private String nombre;
     private int creditos;
     private int horasSemanales;
+    private int id;
     
     public Curso(){
         this.codigo = 0;
         this.nombre = new String();
         this.creditos = 0;
         this.horasSemanales = 0;
+        this.id = 0;
     }
-    public Curso(int codigo, String nombre, int creditos, int horasSemanales) {
+    public Curso(int id, int codigo, String nombre, int creditos, int horasSemanales) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.creditos = creditos;
         this.horasSemanales = horasSemanales;
+        this.id = id;
     }
 
     public int getCodigo() {
@@ -59,6 +62,14 @@ public class Curso {
 
     public void setHorasSemanales(int horasSemanales) {
         this.horasSemanales = horasSemanales;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

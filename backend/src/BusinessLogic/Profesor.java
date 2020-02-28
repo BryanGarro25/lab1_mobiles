@@ -12,20 +12,23 @@ package BusinessLogic;
 public class Profesor {
     private String cedula;
     private String nombre;
-    private String telefono;
+    private int telefono;
     private String email;
+    private int id;
     
     public Profesor(){
         this.cedula = new String();
         this.nombre = new String();
-        this.cedula = new String();
+        this.telefono = 0;
         this.email = new String();
+        this.id = 0;
     }
-    public Profesor(String cedula, String nombre, String telefono, String email) {
+    public Profesor(int id, String cedula, String nombre, int telefono, String email) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
+        this.id = id;
     }
 
     public String getCedula() {
@@ -44,11 +47,11 @@ public class Profesor {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -60,6 +63,14 @@ public class Profesor {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public String toString() {
         return "Profesor{" + "cedula=" + cedula + ", nombre=" + nombre + ", telefono=" + telefono + ", email=" + email + '}';
