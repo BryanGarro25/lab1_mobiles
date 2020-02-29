@@ -32,7 +32,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     public LoginView() {
         initComponents();
         this.test();
-
+        //----------
     }
 
     /**
