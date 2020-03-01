@@ -65,6 +65,10 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setEnabled(false);
+        jMenuBar1.setFocusCycleRoot(true);
+        jMenuBar1.setName(""); // NOI18N
+
         jMenu2.setText("Profesores");
 
         jMenuItem1.setText("Mantenimiento");
@@ -139,6 +143,10 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
         this.model = model;
         model.addObserver(this);
     }
+    
+    public void test(){
+        this.desktopPane.getAllFrames();
+}
     /**
      * @param args the command line arguments
      */

@@ -27,9 +27,8 @@ public class Control {
         this.model = model;
     }
 
-    public int insertarCurso(int codigo, String nombre, int creditos, int horas_semanales) {
+    public int insertarCurso(Curso curso) {
         try {
-            Curso curso = new Curso(0, codigo, nombre, creditos, horas_semanales);
             this.model.insertarCurso(curso);
             return 1;
         } catch (Exception e) {

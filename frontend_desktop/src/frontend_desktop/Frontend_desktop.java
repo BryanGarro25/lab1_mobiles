@@ -5,6 +5,7 @@
  */
 package frontend_desktop;
 
+import Control.CursoController;
 import Control.CursosController;
 import Control.LoginController;
 import Control.MenuController;
@@ -12,11 +13,13 @@ import Control.ProfesorController;
 import Control.ProfesoresController;
 import Model.Model;
 import Controllers.Control;
+import Model.CursoModel;
 import Model.CursosModel;
 import Model.LoginModel;
 import Model.MenuModel;
 import Model.ProfesorModel;
 import Model.ProfesoresModel;
+import Presentation.CursoView;
 import Presentation.CursosView;
 import Presentation.LoginView;
 import Presentation.MenuView;
@@ -67,12 +70,18 @@ public class Frontend_desktop {
         applicationView.addInternalFrame(cursosView);
         CursosController cursosController = new CursosController(cursosView, cursosModel, control);
         CURSOS_CONTROLLER = cursosController;
+        //--------------------------CURSO---------------------------
+        CursoModel cursoModel = new CursoModel();
+        CursoView cursoView = new CursoView(APPLICATION_VIEW, true);
+        CursoController cursoController = new CursoController(cursoView, cursoModel, control);
+        CURSO_CONTROLLER = cursoController;
     }
     public static MenuController APPLICATION_CONTROLLER;
     public static LoginController LOGIN_CONTROLLER;
     public static ProfesoresController PROFESORES_CONTROLLER;
     public static ProfesorController PROFESOR_CONTROLLER;
     public static CursosController CURSOS_CONTROLLER;
+    public static CursoController CURSO_CONTROLLER;
 
     public static MenuView APPLICATION_VIEW;
 

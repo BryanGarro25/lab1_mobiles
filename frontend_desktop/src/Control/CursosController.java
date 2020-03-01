@@ -9,6 +9,7 @@ import BusinessLogic.Curso;
 import Controllers.Control;
 import Model.CursosModel;
 import Presentation.CursosView;
+import frontend_desktop.Frontend_desktop;
 import java.util.List;
 
 /**
@@ -35,8 +36,12 @@ public class CursosController {
  
     public void refrescarBusqueda(){
         List<Curso> rows = domainModel.listarCursos();
+        
         model.setCursos(rows);
         model.commit();
         //if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
     }   
+    public void showCurso(){
+         Frontend_desktop.CURSO_CONTROLLER.show();
+    }
 }

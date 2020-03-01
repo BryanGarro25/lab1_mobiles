@@ -25,6 +25,11 @@ public class CursosTableModel extends AbstractTableModel {
     }
 
     @Override
+    public int getColumnCount() {
+        return cols.length;
+    }
+
+    @Override
     public String getColumnName(int col) {
         return colNames[cols[col]];
     }
@@ -34,25 +39,17 @@ public class CursosTableModel extends AbstractTableModel {
         return rows.size();
     }
 
-   @Override
-    public Class<?> getColumnClass(int col) {
-        switch (cols[col]) {
-            default:
-                return super.getColumnClass(col);
-        }
-    }
-
     @Override
     public Object getValueAt(int row, int col) {
         Curso curso = rows.get(row);
         switch (cols[col]) {
-            case HORAS:
-                return curso.getCreditos();
+            case CODIGO:
+                return curso.getCodigo();
             case NOMBRE:
                 return curso.getNombre();
             case CREDITOS:
                 return curso.getCreditos();
-            case CODIGO:
+            case HORAS:
                 return curso.getHorasSemanales();
 
             default:
@@ -63,7 +60,7 @@ public class CursosTableModel extends AbstractTableModel {
     /*private Icon getIcon() {
         return new ImageIcon( getClass().getResource( "/Presentation/Icons/edit.png" ) );
     }*/
-    String[] colNames = new String[5];
+    String[] colNames = new String[4];
 
     private void initColNames() {
         colNames[CODIGO] = "Código";
@@ -77,9 +74,4 @@ public class CursosTableModel extends AbstractTableModel {
     public static final int CREDITOS = 2;
     public static final int HORAS = 3;
 
-
-    @Override
-    public int getColumnCount() {
-        return rows.size();
-    }
 }

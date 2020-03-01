@@ -10,7 +10,10 @@ import Control.ProfesorController;
 import Model.ProfesorModel;
 import frontend_desktop.Frontend_desktop;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,6 +70,11 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         });
 
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,6 +140,20 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     if(this.validar()){
+         try {
+             controller.guardar(this.toProfesor());
+         } catch (Exception ex) {
+             Logger.getLogger(ProfesorView.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, "Cédula ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+         }
+     }
+      else{
+            JOptionPane.showMessageDialog(this, "Error en datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }    
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void setController(ProfesorController controller) {
         this.controller = controller;
