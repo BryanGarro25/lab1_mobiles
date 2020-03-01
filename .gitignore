@@ -1,3 +1,7 @@
 /backend/nbproject/private/
 /frontend_desktop/nbproject/private/
 /frontend_web/nbproject/private/
+/backend/build/
+/frontend_desktop/build/
+/frontend_desktop/dist/
+/backend/dist/
