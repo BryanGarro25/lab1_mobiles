@@ -15,6 +15,6 @@
     </head>
     <body>
         <%--@include file="pages/login.jsp"--%>
-        <%@include file="pages/profesorCRUD.jsp"%>
+        
     </body>
 </html>
