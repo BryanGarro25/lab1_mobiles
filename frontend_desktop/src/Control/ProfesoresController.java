@@ -43,5 +43,8 @@ public class ProfesoresController {
         model.setProfesores(rows);
         model.commit();
         //if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
-    }   
+    }  
+    public void hide(){
+        this.view.setVisible(false);
+    }
 }

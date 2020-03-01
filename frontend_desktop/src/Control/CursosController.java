@@ -44,4 +44,7 @@ public class CursosController {
     public void showCurso(){
          Frontend_desktop.CURSO_CONTROLLER.show();
     }
+    public void hide(){
+        view.setVisible(false);
+    }
 }

@@ -6,7 +6,6 @@
 package Presentation;
 
 import BusinessLogic.Curso;
-import BusinessLogic.Profesor;
 import Control.CursoController;
 import Model.CursoModel;
 import frontend_desktop.Frontend_desktop;
@@ -21,37 +20,37 @@ import javax.swing.JOptionPane;
  * @author Josue
  */
 public class CursoView extends javax.swing.JDialog implements java.util.Observer {
-
+    
     public CursoView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     CursoController controller;
     CursoModel model;
-
+    
     public void setController(CursoController controller) {
         this.controller = controller;
     }
-
+    
     public CursoController getController() {
         return controller;
     }
-
+    
     public void setModel(CursoModel model) {
         this.model = model;
         model.addObserver(this);
     }
-
+    
     boolean validar() {
         boolean error = false;
-
+        
         this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
         if (this.codigoFld.getText().isEmpty()) {
             this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
             this.codigoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
             error = true;
         }
-
+        
         this.jLabel3.setForeground(Frontend_desktop.COLOR_OK);
         if (this.nombreFld.getText().isEmpty()) {
             this.jLabel3.setForeground(Frontend_desktop.COLOR_ERROR);
@@ -72,8 +71,8 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         }
         return !error;
     }
-
-    Curso toCurso() {
+    
+    private Curso toCurso() {
         Curso curso = new Curso();
         curso.setCodigo(Integer.parseInt(this.codigoFld.getText()));
         curso.setNombre(this.nombreFld.getText());
@@ -82,11 +81,25 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         return curso;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-
+    private void fromCurso(Curso curso) {
+        if (model.getModo() == Frontend_desktop.MODO_AGREGAR) {
+            this.codigoFld.setText("");
+            this.creditosFld.setText("");
+            this.horasFld.setText("");
+        } else {
+            this.codigoFld.setText(Integer.toString(curso.getCodigo()));
+            this.creditosFld.setText(Integer.toString(curso.getCreditos()));
+            this.horasFld.setText(Integer.toString(curso.getHorasSemanales()));
+        }
+        this.nombreFld.setText(curso.getNombre());
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        Curso curso = model.getCurrent();
+        this.fromCurso(curso);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -117,6 +130,11 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         jLabel5.setText("Horas Semanales");
 
         jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +213,10 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
             JOptionPane.showMessageDialog(this, "Error en datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.hide();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codigoFld;

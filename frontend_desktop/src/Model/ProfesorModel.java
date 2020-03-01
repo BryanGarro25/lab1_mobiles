@@ -15,6 +15,7 @@ public class ProfesorModel extends java.util.Observable {
     Profesor current;
     int modo;
     public ProfesorModel(){
+        current = new Profesor();
     }
     @Override
     public void addObserver(java.util.Observer o) {

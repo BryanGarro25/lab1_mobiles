@@ -58,7 +58,9 @@ public class ProfesorController {
         }
         return result;
     }
-    public void hide(){
+
+    public void hide() {
+        model.setCurrent(new Profesor());
         view.setVisible(false);
     }
 }

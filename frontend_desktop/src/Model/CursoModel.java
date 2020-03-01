@@ -17,7 +17,7 @@ public class CursoModel extends java.util.Observable {
     int modo;
 
     public CursoModel() {
-
+        current = new Curso();
     }
 
     @Override
