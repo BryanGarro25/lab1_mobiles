@@ -61,8 +61,8 @@ begin
   FROM   dual;
 end auto_increment_lab01_profesor;
 /
-<<<<<<< HEAD
-=======
+
+
 CREATE OR REPLACE PACKAGE types
 AS
      TYPE ref_cursor IS REF CURSOR;
@@ -158,6 +158,7 @@ create or replace procedure PA_modificarCurso( id in lab01_curso.id_DB%type,
 as 
 begin 
  update lab01_curso set codigo=new_codigo, nombre=new_nombre, creditos=new_creditos, horas_semanales=new_horasSemanales where lab01_curso.id_DB = id;
+ commit; 
 end;
 /
 
@@ -167,8 +168,9 @@ begin
 	delete from lab01_curso where lab01_curso.id_DB = id;
 end;
 /
->>>>>>> master
+
 -- Pruebas
 conn lab01/lab01_DB
-insert into lab01_DBA.lab01_curso(codigo, nombre, creditos,horas_semanales) values ('hola','test',2,4.2); 
+insert into lab01_DBA.lab01_curso(codigo, nombre, creditos,horas_semanales) values (1,'Moviles',2,4.2); 
 insert into lab01_DBA.lab01_profesor (cedula,nombre,telefono,email) values ('123','Juan',0123456,'bryangarroeduarte@gmail.com');
+commit;
