@@ -150,6 +150,9 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
                 int i = controller.guardar(this.toProfesor());
                 if (i == 1) {
                     JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente", "Exito", JOptionPane.DEFAULT_OPTION);
+                } else {
+                    this.errorCedula();
+                    JOptionPane.showMessageDialog(this, "Cédula ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (Exception ex) {
@@ -229,6 +232,12 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         return !error;
     }
 
+    public void errorCedula() {
+        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
+        this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+        this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedulaFld;
     private javax.swing.JTextField emailFld;
