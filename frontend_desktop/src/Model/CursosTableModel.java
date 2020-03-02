@@ -24,6 +24,10 @@ public class CursosTableModel extends AbstractTableModel {
         initColNames();
     }
 
+    public List<Curso> getRows() {
+        return rows;
+    }
+    
     @Override
     public int getColumnCount() {
         return cols.length;

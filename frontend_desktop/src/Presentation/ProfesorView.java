@@ -27,6 +27,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     public ProfesorView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -139,21 +140,25 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.reset(Frontend_desktop.MODO_AGREGAR, new Profesor());
         controller.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     if(this.validar()){
-         try {
-             controller.guardar(this.toProfesor());
-         } catch (Exception ex) {
-             Logger.getLogger(ProfesorView.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(this, "Cédula ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
-         }
-     }
-      else{
+        if (this.validar()) {
+            try {
+                int i = controller.guardar(this.toProfesor());
+                if (i == 1) {
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente", "Exito", JOptionPane.DEFAULT_OPTION);
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(ProfesorView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cédula ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Error en datos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }    
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void setController(ProfesorController controller) {
@@ -168,26 +173,31 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         this.model = model;
         model.addObserver(this);
     }
-    Profesor toProfesor(){
+
+    Profesor toProfesor() {
         Profesor profe = new Profesor();
+        int id = model.getCurrent().getId();
+        if (id != 0) {
+            profe.setId(id);
+        }
         profe.setCedula(this.cedulaFld.getText());
         profe.setNombre(this.nombreFld.getText());
         profe.setTelefono(Integer.parseInt(this.telefonoFld.getText()));
         profe.setEmail(this.emailFld.getText());
         return profe;
     }
-    
-    private void fromProfesor(Profesor actual){
+
+    private void fromProfesor(Profesor actual) {
         this.cedulaFld.setText(actual.getCedula());
         this.nombreFld.setText(actual.getNombre());
-        if(model.getModo()==Frontend_desktop.MODO_AGREGAR){
-             this.telefonoFld.setText("");
-        }
-        else{
-             this.telefonoFld.setText(Integer.toString(actual.getTelefono()));
+        if (model.getModo() == Frontend_desktop.MODO_AGREGAR) {
+            this.telefonoFld.setText("");
+        } else {
+            this.telefonoFld.setText(Integer.toString(actual.getTelefono()));
         }
         this.emailFld.setText(actual.getEmail());
     }
+
     boolean validar() {
         boolean error = false;
 

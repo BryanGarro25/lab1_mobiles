@@ -6,6 +6,7 @@
 package Control;
 
 import BusinessLogic.Curso;
+import BusinessLogic.Profesor;
 import Controllers.Control;
 import Model.CursoModel;
 import Presentation.CursoView;
@@ -49,15 +50,27 @@ public class CursoController {
                 this.hide();
                 model.commit();
                 break;
-            /* case Application.MODO_EDITAR:
-                domainModel.updateFuncionario(funcionario);
-                Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
-                break;*/
+            case Frontend_desktop.MODO_EDITAR:
+                result = domainModel.modificarCurso(curso);
+                Frontend_desktop.CURSOS_CONTROLLER.refrescarBusqueda();
+                model.setModo(Frontend_desktop.MODO_AGREGAR);
+                model.setCurrent(new Curso());
+                this.hide();
+                model.commit();
+                break;
+                  
         }
         return result;
     }
 
     public void hide() {
         view.setVisible(false);
+    }
+
+    public void reset(int modo, Curso curso) {
+        this.model.setModo(modo);
+        this.model.setCurrent(curso);
+        this.model.commit();
+
     }
 }

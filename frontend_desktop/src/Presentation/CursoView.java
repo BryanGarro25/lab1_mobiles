@@ -20,37 +20,38 @@ import javax.swing.JOptionPane;
  * @author Josue
  */
 public class CursoView extends javax.swing.JDialog implements java.util.Observer {
-    
+
     public CursoView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     CursoController controller;
     CursoModel model;
-    
+
     public void setController(CursoController controller) {
         this.controller = controller;
     }
-    
+
     public CursoController getController() {
         return controller;
     }
-    
+
     public void setModel(CursoModel model) {
         this.model = model;
         model.addObserver(this);
     }
-    
+
     boolean validar() {
         boolean error = false;
-        
+
         this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
         if (this.codigoFld.getText().isEmpty()) {
             this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
             this.codigoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
             error = true;
         }
-        
+
         this.jLabel3.setForeground(Frontend_desktop.COLOR_OK);
         if (this.nombreFld.getText().isEmpty()) {
             this.jLabel3.setForeground(Frontend_desktop.COLOR_ERROR);
@@ -71,9 +72,13 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         }
         return !error;
     }
-    
+
     private Curso toCurso() {
         Curso curso = new Curso();
+        int id = model.getCurrent().getId();
+        if (id != 0) {
+            curso.setId(id);
+        }
         curso.setCodigo(Integer.parseInt(this.codigoFld.getText()));
         curso.setNombre(this.nombreFld.getText());
         curso.setCreditos(Integer.parseInt(this.creditosFld.getText()));
@@ -99,7 +104,7 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         Curso curso = model.getCurrent();
         this.fromCurso(curso);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -205,6 +210,9 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
         if (this.validar()) {
             try {
                 int guardar = this.controller.guardar(this.toCurso());
+                 if (guardar == 1) {
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente", "Exito", JOptionPane.DEFAULT_OPTION);
+                }
             } catch (Exception ex) {
                 Logger.getLogger(CursoView.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Código ya Existe", "ERROR", JOptionPane.ERROR_MESSAGE);

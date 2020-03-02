@@ -27,11 +27,13 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
      */
     private void test() {
         this.setTitle("Login");
+        this.setLocationRelativeTo(null);
     }
 
     public LoginView() {
         initComponents();
         this.test();
+     
     }
 
     /**

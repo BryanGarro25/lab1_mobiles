@@ -48,13 +48,16 @@ public class ProfesorController {
                 Frontend_desktop.PROFESORES_CONTROLLER.refrescarBusqueda();
                 model.setCurrent(new Profesor());
                 this.hide();
-                // model.setCurrent(new Funcionario());
                 model.commit();
                 break;
-            /* case Application.MODO_EDITAR:
-                domainModel.updateFuncionario(funcionario);
-                Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
-                break;*/
+            case Frontend_desktop.MODO_EDITAR:
+                result = domainModel.modificarProfesor(profesor);
+                Frontend_desktop.PROFESORES_CONTROLLER.refrescarBusqueda();
+                model.setModo(Frontend_desktop.MODO_AGREGAR);
+                model.setCurrent(new Profesor());
+                model.commit();
+                this.hide();
+                break;
         }
         return result;
     }
@@ -62,5 +65,12 @@ public class ProfesorController {
     public void hide() {
         model.setCurrent(new Profesor());
         view.setVisible(false);
+    }
+
+    public void reset(int modo, Profesor profesor) {
+        this.model.setModo(modo);
+        this.model.setCurrent(profesor);
+        this.model.commit();
+        //this.view.setVisible(true);
     }
 }

@@ -1,4 +1,5 @@
 package Data;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,15 +17,13 @@ import oracle.jdbc.OracleTypes;
  *
  * @author Josue
  */
-
-    
 public class ServicioCurso extends Servicio {
 
     private static final String INSERTAR_CURSO = "{call PA_insertarCurso(?,?,?,?)}";
     private static final String ELIMINAR_CURSO = "{call PA_eliminarCurso(?)}";
     private static final String BUSCAR_CURSO = "{?=call PA_buscarCurso(?)}";
     private static final String LISTAR_CURSOS = "{?=call PA_listarCursos}";
-    private static final String MODIFICAR_CURSO = "{call modificarCurso(?,?,?,?,?)}";
+    private static final String MODIFICAR_CURSO = "{call PA_modificarCurso(?,?,?,?,?)}";
     private static ServicioCurso uniqueInstance;
 
     public static ServicioCurso instance() {
@@ -144,6 +143,7 @@ public class ServicioCurso extends Servicio {
                 System.out.println("\nModificación Satisfactoria!");
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new GlobalException("Sentencia no valida");
         } finally {
             try {
@@ -190,26 +190,27 @@ public class ServicioCurso extends Servicio {
             }
         }
     }
-    public Curso buscarCurso(int id) throws GlobalException, NoDataException, SQLException  	{
+
+    public Curso buscarCurso(int id) throws GlobalException, NoDataException, SQLException {
         try {
             conectar();
         } catch (ClassNotFoundException e) {
             throw new GlobalException("No se ha localizado el driver");
         } catch (SQLException e) {
             throw new NoDataException("La base de datos no se encuentra disponible");
-        }      
+        }
         ResultSet rs = null;
-        Curso curso=null;
-        CallableStatement pstmt=null;  
-        try {            
-            pstmt = conexion.prepareCall(BUSCAR_CURSO);            
-            pstmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);            
-            pstmt.setInt(2, id);           
+        Curso curso = null;
+        CallableStatement pstmt = null;
+        try {
+            pstmt = conexion.prepareCall(BUSCAR_CURSO);
+            pstmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR);
+            pstmt.setInt(2, id);
             pstmt.execute();
-            rs = (ResultSet)pstmt.getObject(1);
+            rs = (ResultSet) pstmt.getObject(1);
             if (rs.next()) {
-               
-                curso= new Curso(rs.getInt("id_DB"),rs.getInt("codigo"),rs.getString("nombre"),rs.getInt("creditos"), rs.getInt("horas_semanales"));
+
+                curso = new Curso(rs.getInt("id_DB"), rs.getInt("codigo"), rs.getString("nombre"), rs.getInt("creditos"), rs.getInt("horas_semanales"));
             }
         } catch (SQLException e) {
             throw new GlobalException("Sentencia no valida");

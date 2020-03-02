@@ -11,6 +11,7 @@ import java.beans.PropertyVetoException;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +24,7 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
      */
     public CursosView() {
         initComponents();
-       /* try {
+        /* try {
             this.setMaximum(true);
         } catch (PropertyVetoException ex) {
             Logger.getLogger(CursosView.class.getName()).log(Level.SEVERE, null, ex);
@@ -39,19 +40,24 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        seachFld = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        seachBtn = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setMaximizable(true);
         setTitle("Cursos");
 
-        jLabel1.setText("Buscar");
+        seachFld.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                seachFldFocusLost(evt);
+            }
+        });
 
         jButton1.setText("Agregar Curso");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +85,11 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
             }
         ));
         jTable2.setFocusable(false);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setHeaderValue("Title 1");
@@ -87,37 +98,52 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
             jTable2.getColumnModel().getColumn(3).setHeaderValue("Title 4");
         }
 
+        jButton3.setText("Eliminar Curso");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        seachBtn.setText("Filtrar por código");
+        seachBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seachBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addComponent(seachBtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(seachFld, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3)
+                    .addComponent(seachFld)
+                    .addComponent(seachBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -130,8 +156,41 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       controller.showCurso();
+        controller.showCurso();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = this.jTable2.getSelectedRow();
+        if (row != -1) {
+            int resp = JOptionPane.showConfirmDialog(this, "Desea borrar este registro?");
+            if (resp == JOptionPane.YES_OPTION) {
+                int domainAnswer = controller.eliminarCurso(row);
+                if (domainAnswer == 1) {
+                    JOptionPane.showMessageDialog(this, "Registro eliminado", "Exito", JOptionPane.DEFAULT_OPTION);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un registro para eliminar", "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        if (evt.getClickCount() == 2) {
+            int row = this.jTable2.getSelectedRow();
+            this.controller.reset(row);
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void seachBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBtnActionPerformed
+   
+            controller.filtrar(this.seachFld.getText());
+    }//GEN-LAST:event_seachBtnActionPerformed
+
+    private void seachFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seachFldFocusLost
+        if (this.seachFld.getText().isEmpty()) {
+            controller.refrescarBusqueda();
+        }
+    }//GEN-LAST:event_seachFldFocusLost
     CursosController controller;
     CursosModel model;
 
@@ -151,14 +210,15 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton seachBtn;
+    private javax.swing.JTextField seachFld;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
-         this.jTable2.setModel(model.getCursos());
+        this.jTable2.setModel(model.getCursos());
     }
 }

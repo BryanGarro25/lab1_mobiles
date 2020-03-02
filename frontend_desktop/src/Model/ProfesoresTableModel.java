@@ -40,16 +40,11 @@ public class ProfesoresTableModel extends AbstractTableModel {
         return rows.size();
     }
 
-//    @Override
-//    public Class<?> getColumnClass(int col) {
-//        switch (cols[col]) {
-//            case MODIFICAR:
-//                return JButton.class;
-//            default:
-//                return super.getColumnClass(col);
-//        }
-//    }
+    public List<Profesor> getRows() {
+        return rows;
+    }
 
+    
     @Override
     public Object getValueAt(int row, int col) {
         Profesor profe = rows.get(row);
