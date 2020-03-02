@@ -16,30 +16,37 @@ import frontend_desktop.Frontend_desktop;
  * @author Josue
  */
 public class LoginController {
-    Control control; 
+
+    Control control;
     LoginView view;
     LoginModel model;
-    
-    public LoginController(LoginView view, LoginModel model, Control control ){
+
+    public LoginController(LoginView view, LoginModel model, Control control) {
         this.view = view;
         this.model = model;
         this.control = control;
         this.view.setController(this);
         view.setModel(model);
     }
-     public boolean login(Usuario typed) throws Exception{
-       // model.setCurrent(typed);
-        if(control.login(typed)){
-             view.setVisible(false);
-             Frontend_desktop.APPLICATION_CONTROLLER.enter();
-             return true;
+
+    public boolean login(Usuario typed) throws Exception {
+        // model.setCurrent(typed);
+        if (control.login(typed)) {
+            view.setVisible(false);
+            Frontend_desktop.APPLICATION_CONTROLLER.enter();
+            return true;
         }
         return false;
         //session.setAttibute(Application.USER_ATTRIBUTE, real);
-       // Application.APPLICATION_CONTROLLER.enter();
-        
-    } 
-       public void logout(){
+        // Application.APPLICATION_CONTROLLER.enter();
+
+    }
+
+    public void logout() {
         view.setVisible(true);
+    }
+
+    public void exit() {
+        System.exit(0);
     }
 }
