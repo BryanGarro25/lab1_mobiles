@@ -13,7 +13,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
@@ -45,15 +48,30 @@ public class ProfesoresResource {
         try {
             Model dm1 = Model.instance();
             dm = new Control(dm1);
-//            System.out.println(dm.listarProfesores());
-//            return dm.listarProfesores();
-        if(dm == null)
-            System.out.println("aqui va");
-        System.out.println("lista: "+ dm.listarProfesores());
             return dm.listarProfesores();
         } catch (Exception e) {
             return null;
         }
 
+    }
+    
+    @POST
+    @Path("insert")
+//    @Consumes(MediaType.MULTIPART_FORM_DATA) se usa cuando se envian archivos
+    public void insert(
+    @FormParam("cedulaProfesor") String cedula,
+    @FormParam("nombreProfesor") String nombre,
+    @FormParam("telefonoProfesor") int telefono,
+    @FormParam("emailProfesor") String email
+    
+    ){
+        try {
+            Model dm1 = Model.instance();
+            dm = new Control(dm1);
+            System.out.println("intenta insertar");
+            dm.insertarProfesor(new Profesor(0,cedula,nombre,telefono,email));
+        } catch (Exception e) {
+            
+        }
     }
 }
