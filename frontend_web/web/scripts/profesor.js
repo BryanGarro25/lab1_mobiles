@@ -12,6 +12,7 @@ function creartabla(){
         }).then(d => {
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
+            console.log(obj2);
             let tbody = document.getElementById("tbody_tabla_de_profesores");
             for(let x = 0; x< obj2.length;x++){
                 let tr = document.createElement("tr");
@@ -32,6 +33,11 @@ function creartabla(){
                 email.innerHTML = obj2[x].email;
                 tr.appendChild(email);
                 
+                let boton = document.createElement("button");
+                boton.onclick = function () {eliminar(obj2[x].id);};
+                boton.innerHTML = "eliminar";
+                tr.appendChild(boton);
+                
                 tbody.appendChild(tr);
             }
             
@@ -39,11 +45,11 @@ function creartabla(){
             $(document).ready(function() {
                 $('#tabla_de_profesores').DataTable({
                   "language": {
-                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "lengthMenu": "Mostrar _MENU_ Profesores",
                         "zeroRecords": "Sin resultados encontrados",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Profesores",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Profesores",
+                        "infoFiltered": "(Filtrado de _MAX_ total Profesores)",
                         "processing": "Procesando...",
                         "loadingRecords": "Cargando...",
                         "search": "Buscar:",
@@ -77,5 +83,12 @@ function clearparams(){
     document.getElementById('telefonoProfesor').value='';
     document.getElementById('emailProfesor').value='';
     
+    
+}
+
+function eliminar(x){
+    console.log('elimina: '+x);
+     var aux = "../../ObtenerTablePartidoIDForVotar?" +
+                "id={0}";
     
 }

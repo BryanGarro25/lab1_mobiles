@@ -62,6 +62,7 @@
                     <th>nombre</th>
                     <th>telefono</th>
                     <th>email</th>
+                    <th>Accion</th>
                 </thead>
                     <tbody id = "tbody_tabla_de_profesores">
                     </tbody>    
