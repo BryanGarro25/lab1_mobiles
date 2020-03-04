@@ -31,6 +31,7 @@ public class ProfesoresTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int col) {
+
         return colNames[cols[col]];
     }
 
@@ -39,16 +40,11 @@ public class ProfesoresTableModel extends AbstractTableModel {
         return rows.size();
     }
 
-    @Override
-    public Class<?> getColumnClass(int col) {
-        switch (cols[col]) {
-            case MODIFICAR:
-                return JButton.class;
-            default:
-                return super.getColumnClass(col);
-        }
+    public List<Profesor> getRows() {
+        return rows;
     }
 
+    
     @Override
     public Object getValueAt(int row, int col) {
         Profesor profe = rows.get(row);
@@ -61,8 +57,6 @@ public class ProfesoresTableModel extends AbstractTableModel {
                 return profe.getTelefono();
             case EMAIL:
                 return profe.getEmail();
-            case MODIFICAR:
-                return new JButton("Editar");
             default:
                 return "";
         }
@@ -71,23 +65,21 @@ public class ProfesoresTableModel extends AbstractTableModel {
     private Icon getIcon() {
         return new ImageIcon( getClass().getResource( "/Presentation/Icons/edit.png" ) );
     }
-    String[] colNames = new String[30];
+    String[] colNames = new String[4];
 
     private void initColNames() {
         colNames[CEDULA] = "Cedula";
         colNames[NOMBRE] = "Nombre";
         colNames[TELEFONO] = "Telefono";
         colNames[EMAIL] = "Email";
-        colNames[MODIFICAR] = "Modificar";
     }
     public static final int CEDULA = 0;
     public static final int NOMBRE = 1;
     public static final int TELEFONO = 2;
     public static final int EMAIL = 3;
-    public static final int MODIFICAR = 4;
 
     @Override
     public int getColumnCount() {
-        return rows.size();
+        return cols.length;
     }
 }

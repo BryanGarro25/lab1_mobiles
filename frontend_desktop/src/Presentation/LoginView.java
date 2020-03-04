@@ -27,12 +27,13 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
      */
     private void test() {
         this.setTitle("Login");
+        this.setLocationRelativeTo(null);
     }
 
     public LoginView() {
         initComponents();
         this.test();
-        //----------
+     
     }
 
     /**
@@ -146,7 +147,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     }//GEN-LAST:event_loginActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
-       // this.controller.exit();
+       this.controller.exit();
     }//GEN-LAST:event_closeActionPerformed
     boolean validar() {
         boolean error = false;
