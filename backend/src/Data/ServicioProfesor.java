@@ -201,10 +201,11 @@ public class ServicioProfesor extends Servicio {
         PreparedStatement pstmt = null;
         try {
             pstmt = conexion.prepareStatement(MODIFICAR_PROFESOR);
-            pstmt.setString(1, profesor.getCedula());
-            pstmt.setString(2, profesor.getNombre());
-            pstmt.setInt(3, profesor.getTelefono());
-            pstmt.setString(4, profesor.getEmail());
+            pstmt.setInt(1, profesor.getId());
+            pstmt.setString(2, profesor.getCedula());
+            pstmt.setString(3, profesor.getNombre());
+            pstmt.setInt(4, profesor.getTelefono());
+            pstmt.setString(5, profesor.getEmail());
             int resultado = pstmt.executeUpdate();
 
             //si es diferente de 0 es porq si afecto un registro o mas
@@ -214,6 +215,7 @@ public class ServicioProfesor extends Servicio {
                 System.out.println("\nModificación Satisfactoria!");
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new GlobalException("Sentencia no valida");
         } finally {
             try {

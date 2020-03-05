@@ -21,6 +21,7 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
      */
     public MenuView() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @Override
@@ -54,16 +55,21 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        desktopPane.setFocusCycleRoot(false);
+
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 362, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setFocusCycleRoot(true);
+        jMenuBar1.setName(""); // NOI18N
 
         jMenu2.setText("Profesores");
 
@@ -107,11 +113,15 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,6 +149,10 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
         this.model = model;
         model.addObserver(this);
     }
+    
+    public void test(){
+        this.desktopPane.getAllFrames();
+}
     /**
      * @param args the command line arguments
      */

@@ -27,9 +27,8 @@ public class Control {
         this.model = model;
     }
 
-    public int insertarCurso(int codigo, String nombre, int creditos, int horas_semanales) {
+    public int insertarCurso(Curso curso) {
         try {
-            Curso curso = new Curso(0, codigo, nombre, creditos, horas_semanales);
             this.model.insertarCurso(curso);
             return 1;
         } catch (Exception e) {
@@ -38,9 +37,8 @@ public class Control {
         }
     }
 
-    public int modificarCurso(int id, int codigo, String nombre, int creditos, int horas_semanales) {
+    public int modificarCurso(Curso curso) {
         try {
-            Curso curso = new Curso(id, codigo, nombre, creditos, horas_semanales);
             this.model.modificarCurso(curso);
             return 1;
         } catch (Exception e) {
@@ -93,6 +91,26 @@ public class Control {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+
+    public int eliminarProfesor(int id) {
+        try {
+            this.model.eliminarProfesor(id);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+
+    public int modificarProfesor(Profesor profesor) {
+        try {
+            this.model.modificarProfesor(profesor);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return 0;
         }
     }
 

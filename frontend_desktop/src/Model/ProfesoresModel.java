@@ -33,7 +33,7 @@ public class ProfesoresModel extends java.util.Observable {
     }
 
     public void setProfesores(List<Profesor> profesores) {
-        int[] cols = {ProfesoresTableModel.CEDULA, ProfesoresTableModel.NOMBRE, ProfesoresTableModel.TELEFONO, ProfesoresTableModel.EMAIL, ProfesoresTableModel.MODIFICAR};
+        int[] cols = {ProfesoresTableModel.CEDULA, ProfesoresTableModel.NOMBRE, ProfesoresTableModel.TELEFONO, ProfesoresTableModel.EMAIL};
         this.profesores = new ProfesoresTableModel(cols, profesores);
     }
 

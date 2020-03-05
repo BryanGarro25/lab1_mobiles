@@ -10,7 +10,10 @@ import Control.ProfesorController;
 import Model.ProfesorModel;
 import frontend_desktop.Frontend_desktop;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +27,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     public ProfesorView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -48,6 +52,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Profesor");
 
         jLabel1.setText("Datos del Profesor");
 
@@ -67,6 +72,11 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         });
 
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,8 +140,29 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        controller.reset(Frontend_desktop.MODO_AGREGAR, new Profesor());
+        controller.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (this.validar()) {
+            try {
+                int i = controller.guardar(this.toProfesor());
+                if (i == 1) {
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente", "Exito", JOptionPane.DEFAULT_OPTION);
+                } else {
+                    this.errorCedula();
+                    JOptionPane.showMessageDialog(this, "Cédula ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(ProfesorView.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Cédula ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error en datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void setController(ProfesorController controller) {
         this.controller = controller;
@@ -145,14 +176,31 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         this.model = model;
         model.addObserver(this);
     }
-    Profesor toProfesor(){
+
+    Profesor toProfesor() {
         Profesor profe = new Profesor();
+        int id = model.getCurrent().getId();
+        if (id != 0) {
+            profe.setId(id);
+        }
         profe.setCedula(this.cedulaFld.getText());
         profe.setNombre(this.nombreFld.getText());
         profe.setTelefono(Integer.parseInt(this.telefonoFld.getText()));
         profe.setEmail(this.emailFld.getText());
         return profe;
     }
+
+    private void fromProfesor(Profesor actual) {
+        this.cedulaFld.setText(actual.getCedula());
+        this.nombreFld.setText(actual.getNombre());
+        if (model.getModo() == Frontend_desktop.MODO_AGREGAR) {
+            this.telefonoFld.setText("");
+        } else {
+            this.telefonoFld.setText(Integer.toString(actual.getTelefono()));
+        }
+        this.emailFld.setText(actual.getEmail());
+    }
+
     boolean validar() {
         boolean error = false;
 
@@ -184,6 +232,12 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         return !error;
     }
 
+    public void errorCedula() {
+        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
+        this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+        this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedulaFld;
     private javax.swing.JTextField emailFld;
@@ -199,7 +253,8 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     // End of variables declaration//GEN-END:variables
     @Override
     public void update(Observable o, Object arg) {
-
+        Profesor current = model.getCurrent();
+        this.fromProfesor(current);
     }
 
 }
