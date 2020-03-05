@@ -136,7 +136,9 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         if (this.validar()) {
             try {
 
-                this.controller.login(this.toUsuario());
+                if(!this.controller.login(this.toUsuario())){
+                     JOptionPane.showMessageDialog(this, "Datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
                 //Application.APPLICATION_VIEW.validar();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
