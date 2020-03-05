@@ -45,9 +45,9 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
     boolean validar() {
         boolean error = false;
 
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
+        this.codigoLbl.setForeground(Frontend_desktop.COLOR_OK);
         if (this.codigoFld.getText().isEmpty()) {
-            this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+            this.codigoLbl.setForeground(Frontend_desktop.COLOR_ERROR);
             this.codigoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
             error = true;
         }
@@ -101,16 +101,29 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
 
     @Override
     public void update(Observable o, Object arg) {
+        this.limpiarErrores();
         Curso curso = model.getCurrent();
         this.fromCurso(curso);
     }
+    public void errorCodigo() {
+        this.codigoLbl.setForeground(Frontend_desktop.COLOR_OK);
+        this.codigoLbl.setForeground(Frontend_desktop.COLOR_ERROR);
+        this.codigoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
 
+    }
+    public void limpiarErrores(){
+        this.codigoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.nombreFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.horasFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.creditosFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.codigoLbl.setForeground(Frontend_desktop.COLOR_OK);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        codigoLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -126,7 +139,7 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
 
         jLabel1.setText("Datos del curso");
 
-        jLabel2.setText("Código");
+        codigoLbl.setText("Código");
 
         jLabel3.setText("Nombre");
 
@@ -163,7 +176,7 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
                             .addComponent(jButton2))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
+                                .addComponent(codigoLbl)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5))
@@ -182,7 +195,7 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(codigoLbl)
                     .addComponent(codigoFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,13 +218,16 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (this.validar()) {
             try {
                 int guardar = this.controller.guardar(this.toCurso());
                  if (guardar == 1) {
                     JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente", "Exito", JOptionPane.DEFAULT_OPTION);
+                }else {
+                    this.errorCodigo();
+                    JOptionPane.showMessageDialog(this, "Código ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(CursoView.class.getName()).log(Level.SEVERE, null, ex);
@@ -228,12 +244,12 @@ public class CursoView extends javax.swing.JDialog implements java.util.Observer
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField codigoFld;
+    private javax.swing.JLabel codigoLbl;
     private javax.swing.JTextField creditosFld;
     private javax.swing.JTextField horasFld;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

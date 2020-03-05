@@ -40,7 +40,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        cedulaLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -56,7 +56,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
 
         jLabel1.setText("Datos del Profesor");
 
-        jLabel2.setText("Cedula");
+        cedulaLbl.setText("Cedula");
 
         jLabel3.setText("Nombre");
 
@@ -87,7 +87,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cedulaLbl, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -115,7 +115,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(cedulaLbl)
                     .addComponent(cedulaFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -204,9 +204,9 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     boolean validar() {
         boolean error = false;
 
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_OK);
         if (this.cedulaFld.getText().isEmpty()) {
-            this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+            this.cedulaLbl.setForeground(Frontend_desktop.COLOR_ERROR);
             this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
             error = true;
         }
@@ -233,18 +233,27 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     }
 
     public void errorCedula() {
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_OK);
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_ERROR);
         this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
 
     }
+
+    public void limpiarErrores() {
+        // this.cedulaFld.setForeground(Frontend_desktop.COLOR_OK);
+        this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.nombreFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.emailFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.telefonoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_OK);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedulaFld;
+    private javax.swing.JLabel cedulaLbl;
     private javax.swing.JTextField emailFld;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -253,6 +262,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     // End of variables declaration//GEN-END:variables
     @Override
     public void update(Observable o, Object arg) {
+        this.limpiarErrores();
         Profesor current = model.getCurrent();
         this.fromProfesor(current);
     }

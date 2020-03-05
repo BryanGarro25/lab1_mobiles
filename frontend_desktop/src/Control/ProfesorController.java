@@ -45,12 +45,10 @@ public class ProfesorController {
         switch (model.getModo()) {
             case Frontend_desktop.MODO_AGREGAR:
                 result = domainModel.insertarProfesor(profesor);
-                if (result == 1) {
-                    Frontend_desktop.PROFESORES_CONTROLLER.refrescarBusqueda();
-                    model.setCurrent(new Profesor());
-                    this.hide();
-                    model.commit();
-                }
+                Frontend_desktop.PROFESORES_CONTROLLER.refrescarBusqueda();
+                model.setCurrent(new Profesor());
+                this.hide();
+                model.commit();
                 break;
             case Frontend_desktop.MODO_EDITAR:
                 result = domainModel.modificarProfesor(profesor);
