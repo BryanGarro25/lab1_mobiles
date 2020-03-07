@@ -55,9 +55,11 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/user.png"))); // NOI18N
         jLabel1.setText("Usuario");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/lock.png"))); // NOI18N
         jLabel2.setText("Password");
 
         password.setForeground(new java.awt.Color(0, 0, 0));
@@ -70,6 +72,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         });
 
         login.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/login.png"))); // NOI18N
         login.setText("Login");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +81,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         });
 
         close.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/close.png"))); // NOI18N
         close.setText("Close");
         close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,11 +105,11 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
                             .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                             .addComponent(id)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
+                        .addGap(74, 74, 74)
                         .addComponent(login)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(close)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +126,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(login)
                     .addComponent(close))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
