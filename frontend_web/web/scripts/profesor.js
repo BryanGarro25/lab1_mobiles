@@ -145,13 +145,13 @@ function guardar(){
     
 }
 
-function update(){
+function update(x){
     var cedula = document.getElementById('cedulaProfesor').value;
     var nombreProfesor = document.getElementById('nombreProfesor').value;
     var telefonoProfesor = document.getElementById('telefonoProfesor').value;
     var emailProfesor = document.getElementById('emailProfesor').value;
     
-    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
+    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor+"/"+x;
          fetch(url,{method: 'GET'}).then(r => {
         return r.json();
         }).then(d => {
@@ -190,7 +190,7 @@ function editar(x){
     var botonSumit = document.getElementById('registrarActivoBoton');
     botonSumit.innerHTML = 'Editar Profesor';
    document.getElementById("cedulaProfesor").disabled = true;
-   botonSumit.onclick = function(){update();};
+   botonSumit.onclick = function(){update(x);};
     // programar el otro boton para que revierta esos cambios
 }
 

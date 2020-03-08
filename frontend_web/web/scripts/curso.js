@@ -147,13 +147,14 @@ function guardar(){
     
 }
 
-function update(){
+function update(x){
    var codigoCurso = document.getElementById('codigoCurso').value;
     var nombreCurso = document.getElementById('nombreCurso').value;
     var horasSemanales = document.getElementById('horasSemanales').value;
     var creditosCurso = document.getElementById('creditosCurso').value;
     
-    var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
+    var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso+"/"+x;
+    console.log('URL:'+ url);
          fetch(url,{method: 'GET'}).then(r => {
         return r.json();
         }).then(d => {
@@ -193,7 +194,7 @@ function editar(x){
     var botonSumit = document.getElementById('registrarCursoBoton');
     botonSumit.innerHTML = 'Editar Curso';
    document.getElementById("codigoCurso").disabled = true;
-   botonSumit.onclick = function(){update();};
+   botonSumit.onclick = function(){update(x);};
     // programar el otro boton para que revierta esos cambios
 }
 

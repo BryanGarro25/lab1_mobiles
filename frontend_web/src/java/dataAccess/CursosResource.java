@@ -86,18 +86,19 @@ public class CursosResource {
     }
     
     @GET
-    @Path("update/{codigoCurso}/{nombreCurso}/{horasSemanales}/{emailProfesor}")
+    @Path("update/{codigoCurso}/{nombreCurso}/{horasSemanales}/{emailProfesor}/{x}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String update(
     @PathParam("codigoCurso") int codigoCurso,
     @PathParam("nombreCurso") String nombreCurso,
     @PathParam("horasSemanales") int horasSemanales,
-    @PathParam("creditosCurso") int creditosCurso
+    @PathParam("creditosCurso") int creditosCurso,
+    @PathParam("x") int x
     
     ){
         try {
-            Curso c1 = new Curso(0,codigoCurso,nombreCurso,horasSemanales,creditosCurso);
+            Curso c1 = new Curso(x,codigoCurso,nombreCurso,horasSemanales,creditosCurso);
             System.out.println("curso a insertar: "+c1.toString());
             Model dm1 = Model.instance();
             dm = new Control(dm1);

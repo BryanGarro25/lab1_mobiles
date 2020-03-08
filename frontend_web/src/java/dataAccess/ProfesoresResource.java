@@ -104,18 +104,19 @@ public class ProfesoresResource {
 //        }
 //    }
     @GET
-    @Path("update/{cedulaProfesor}/{nombreProfesor}/{telefonoProfesor}/{emailProfesor}")
+    @Path("update/{cedulaProfesor}/{nombreProfesor}/{telefonoProfesor}/{emailProfesor}/{x}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String update(
     @PathParam("cedulaProfesor") String cedulaProfesor,
     @PathParam("nombreProfesor") String nombreProfesor,
     @PathParam("telefonoProfesor") int telefonoProfesor,
-    @PathParam("emailProfesor") String emailProfesor
+    @PathParam("emailProfesor") String emailProfesor,
+    @PathParam("x") int x
     
     ){
         try {
-            Profesor p1 = new Profesor(0,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
+            Profesor p1 = new Profesor(x,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
             System.out.println("profesror a actualizar: "+p1.toString());
             Model dm1 = Model.instance();
             dm = new Control(dm1);
