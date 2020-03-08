@@ -59,31 +59,58 @@ public class ProfesoresResource {
     
     @POST
     @Path("insert")
-//    @Consumes(MediaType.MULTIPART_FORM_DATA) se usa cuando se envian archivos
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void insert(
-    @FormParam("cedulaProfesor") String cedula,
-    @FormParam("nombreProfesor") String nombre,
-    @FormParam("telefonoProfesor") int telefono,
-    @FormParam("emailProfesor") String email
+    @FormParam("cedulaProfesor") String cedulaProfesor,
+    @FormParam("nombreProfesor") String nombreProfesor,
+    @FormParam("telefonoProfesor") int telefonoProfesor,
+    @FormParam("emailProfesor") String emailProfesor
     
     ){
         try {
+            Profesor p1 = new Profesor(0,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
+            System.out.println("profesror a insertar: "+p1.toString());
             Model dm1 = Model.instance();
             dm = new Control(dm1);
             System.out.println("intenta insertar");
-            dm.insertarProfesor(new Profesor(0,cedula,nombre,telefono,email));
+            dm.insertarProfesor(p1);
         } catch (Exception e) {
             
         }
     }
+    
+    @POST
+    @Path("update")
+//    @Consumes(MediaType.MULTIPART_FORM_DATA) se usa cuando se envian archivos
+    public void update(
+    @FormParam("cedulaProfesor") String cedulaProfesor,
+    @FormParam("nombreProfesor") String nombreProfesor,
+    @FormParam("telefonoProfesor") int telefonoProfesor,
+    @FormParam("emailProfesor") String emailProfesor
+    
+    ){
+        try {
+            Profesor p1 = new Profesor(0,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
+            System.out.println("profesror a actualizar: "+p1.toString());
+            Model dm1 = Model.instance();
+            dm = new Control(dm1);
+            System.out.println("intenta actualizar");
+            dm.modificarProfesor(p1);
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    
     @DELETE
     @Path("delete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public int eliminar(@PathParam("id") int id){
+    public String eliminar(@PathParam("id") int id){
         Model dm1 = Model.instance();
         dm = new Control(dm1);
-        return 0;
-        
+       
+        int result =  dm.eliminarProfesor(id);
+        return String.valueOf(result);
     }
 }

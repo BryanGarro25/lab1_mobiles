@@ -28,11 +28,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Cedula</label>
-                      <input type="text" class="form-control" id="inputcedulaProfesor" placeholder="1-1111-1111">
+                      <input type="text" class="form-control" id="cedulaProfesor" placeholder="1-1111-1111" name = "cedulaProfesor">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputPassword4">Nombre</label>
-                      <input type="text" class="form-control" id="nombreProfesor" placeholder="Nombre">
+                      <input type="text" class="form-control" id="nombreProfesor" placeholder="Nombre" name="nombreProfesor">
                     </div>
                 </div>
                 
@@ -41,17 +41,20 @@
                  <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">telefono</label>
-                      <input type="text" class="form-control" id="telefonoProfesor" placeholder="0000-0000">
+                      <input type="text" class="form-control" id="telefonoProfesor" placeholder="0000-0000" name = "telefonoProfesor">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputPassword4">Email</label>
-                      <input type="email" class="form-control" id="emailProfesor" placeholder="Ingrese Email">
+                      <input type="email" class="form-control" id="emailProfesor" placeholder="Ingrese Email" name="emailProfesor">
                     </div>
                 </div>
                
  
-                <button onclick = "addrow();" type="submit" class="btn btn-primary" id="registrarActivoBoton">
+                <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
                     Registrar Profesor
+                </button>
+                <button onclick = 'salidModoEdicion();' class="btn btn-primary" id="salirModoEdicion"  style="display: none">
+                    salir de modo edicion 
                 </button>
             </form>
         </div>
@@ -63,6 +66,7 @@
                     <th>telefono</th>
                     <th>email</th>
                     <th>Accion</th>
+                    <th>Accion</th>
                 </thead>
                     <tbody id = "tbody_tabla_de_profesores">
                     </tbody>    
@@ -71,6 +75,9 @@
     </body>
     <script>
         $('#profesorForm').submit(function() {
+            this.submit();
+            
+            addrow();
             clearparams();
         });
     </script>
