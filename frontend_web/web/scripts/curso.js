@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 function creartabla(){
-        var url = "../api/profesores/all";
+        var url = "../api/cursos/all";
       
         fetch(url).then(r => {
             return r.json();
@@ -13,12 +19,12 @@ function creartabla(){
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
             console.log(obj2);
-            let tbody = document.getElementById("tbody_tabla_de_profesores");
+            let tbody = document.getElementById("tbody_tabla_de_cursos");
             for(let x = 0; x< obj2.length;x++){
                 let tr = document.createElement("tr");
                 
                 let cedula = document.createElement("td");
-                cedula.innerHTML = obj2[x].cedula;
+                cedula.innerHTML = obj2[x].codigo;
                 tr.appendChild(cedula);
                 
                 let nombre = document.createElement("td");
@@ -26,11 +32,11 @@ function creartabla(){
                 tr.appendChild(nombre);
                 
                 let telefono = document.createElement("td");
-                telefono.innerHTML = obj2[x].telefono;
+                telefono.innerHTML = obj2[x].horasSemanales;
                 tr.appendChild(telefono);
                 
                 let email = document.createElement("td");
-                email.innerHTML = obj2[x].email;
+                email.innerHTML = obj2[x].creditos;
                 tr.appendChild(email);
                 
                 
@@ -56,13 +62,13 @@ function creartabla(){
             
             
             $(document).ready(function() {
-                $('#tabla_de_profesores').DataTable({
+                $('#tabla_de_cursos').DataTable({
                   "language": {
-                        "lengthMenu": "Mostrar _MENU_ Profesores",
+                        "lengthMenu": "Mostrar _MENU_ cursos",
                         "zeroRecords": "Sin resultados encontrados",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Profesores",
-                        "infoEmpty": "Mostrando 0 to 0 of 0 Profesores",
-                        "infoFiltered": "(Filtrado de _MAX_ total Profesores)",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ cursos",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 cursos",
+                        "infoFiltered": "(Filtrado de _MAX_ total cursos)",
                         "processing": "Procesando...",
                         "loadingRecords": "Cargando...",
                         "search": "Buscar:",
@@ -82,34 +88,30 @@ function creartabla(){
 }
 
 function addrow() {
-    var table = $('#tabla_de_profesores').DataTable();
+    var table = $('#tabla_de_cursos').DataTable();
     table.destroy();
-    var tableElement = document.getElementById('tabla_de_profesores');
-    var oldTbody = document.getElementById("tbody_tabla_de_profesores");
+    var tableElement = document.getElementById('tabla_de_cursos');
+    var oldTbody = document.getElementById("tbody_tabla_de_cursos");
     tableElement.removeChild(oldTbody);
     var newTbody = document.createElement('tbody');
-    newTbody.id = 'tbody_tabla_de_profesores';
+    newTbody.id = 'tbody_tabla_de_cursos';
     tableElement.appendChild(newTbody);
     creartabla();
-//    $('#tabla_de_profesores').dataTable().fnAddData( [
-//        $('#inputcedulaProfesor').val(),
-//        $('#nombreProfesor').val(),
-//        $('#telefonoProfesor').val(),
-//        $('#emailProfesor').val() ] );
+
 
 }
 function clearparams(){
-    document.getElementById('cedulaProfesor').value='';
-    document.getElementById('nombreProfesor').value='';
-    document.getElementById('telefonoProfesor').value='';
-    document.getElementById('emailProfesor').value='';
+    document.getElementById('codigoCurso').value='';
+    document.getElementById('nombreCurso').value='';
+    document.getElementById('horasSemanales').value='';
+    document.getElementById('creditosCurso').value='';
     
     
 }
 
 function eliminar(x){
     console.log('elimina: '+x);
-     var url = "../api/profesores/delete/"+x ;
+     var url = "../api/cursos/delete/"+x ;
 
      fetch(url,{method: 'DELETE'}).then(r => {
         return r.json();
@@ -123,12 +125,12 @@ function eliminar(x){
 }
 
 function guardar(){
-    var cedula = document.getElementById('cedulaProfesor').value;
-    var nombreProfesor = document.getElementById('nombreProfesor').value;
-    var telefonoProfesor = document.getElementById('telefonoProfesor').value;
-    var emailProfesor = document.getElementById('emailProfesor').value;
+    var codigoCurso = document.getElementById('codigoCurso').value;
+    var nombreCurso = document.getElementById('nombreCurso').value;
+    var horasSemanales = document.getElementById('horasSemanales').value;
+    var creditosCurso = document.getElementById('creditosCurso').value;
     
-    var url = "../api/profesores/insert/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
+    var url = "../api/cursos/insert/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
          fetch(url,{method: 'GET'}).then(r => {
         return r.json();
         }).then(d => {
@@ -146,12 +148,12 @@ function guardar(){
 }
 
 function update(){
-    var cedula = document.getElementById('cedulaProfesor').value;
-    var nombreProfesor = document.getElementById('nombreProfesor').value;
-    var telefonoProfesor = document.getElementById('telefonoProfesor').value;
-    var emailProfesor = document.getElementById('emailProfesor').value;
+   var codigoCurso = document.getElementById('codigoCurso').value;
+    var nombreCurso = document.getElementById('nombreCurso').value;
+    var horasSemanales = document.getElementById('horasSemanales').value;
+    var creditosCurso = document.getElementById('creditosCurso').value;
     
-    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
+    var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
          fetch(url,{method: 'GET'}).then(r => {
         return r.json();
         }).then(d => {
@@ -165,20 +167,21 @@ function update(){
           addrow();
           clearparams();
         });
+    
 }
 
 
 function editar(x){
-    var profesor = document.getElementById(x);
-    var list = profesor.childNodes;
+    var curso = document.getElementById(x);
+    var list = curso.childNodes;
     
     for(let i = 0; i< list.length-2;i++)
-        console.log(profesor.childNodes[i].innerHTML);
+        console.log(curso.childNodes[i].innerHTML);
     
-    document.getElementById('cedulaProfesor').value=profesor.childNodes[0].innerHTML;
-    document.getElementById('nombreProfesor').value=profesor.childNodes[1].innerHTML;
-    document.getElementById('telefonoProfesor').value=profesor.childNodes[2].innerHTML;
-    document.getElementById('emailProfesor').value=profesor.childNodes[3].innerHTML;
+    document.getElementById('codigoCurso').value=curso.childNodes[0].innerHTML;
+    document.getElementById('nombreCurso').value=curso.childNodes[1].innerHTML;
+    document.getElementById('horasSemanales').value=curso.childNodes[2].innerHTML;
+    document.getElementById('creditosCurso').value=curso.childNodes[3].innerHTML;
     
     
 //    var form = document.getElementById('profesorForm');
@@ -187,9 +190,9 @@ function editar(x){
     var botonSalirModo = document.getElementById('salirModoEdicion');
     botonSalirModo.style.display = '';
     
-    var botonSumit = document.getElementById('registrarActivoBoton');
-    botonSumit.innerHTML = 'Editar Profesor';
-   document.getElementById("cedulaProfesor").disabled = true;
+    var botonSumit = document.getElementById('registrarCursoBoton');
+    botonSumit.innerHTML = 'Editar Curso';
+   document.getElementById("codigoCurso").disabled = true;
    botonSumit.onclick = function(){update();};
     // programar el otro boton para que revierta esos cambios
 }
@@ -203,9 +206,9 @@ function salidModoEdicion(){
     var botonSalirModo = document.getElementById('salirModoEdicion');
     botonSalirModo.style.display = 'none';
     
-    var botonSumit = document.getElementById('registrarActivoBoton');
-    botonSumit.innerHTML = 'Registrar Profesor';
-   document.getElementById("cedulaProfesor").disabled = false;
+    var botonSumit = document.getElementById('registrarCursoBoton');
+    botonSumit.innerHTML = 'Registrar Cursos';
+   document.getElementById("codigoCurso").disabled = false;
    botonSumit.onclick = function(){guardar();};
    
 }

@@ -57,14 +57,37 @@ public class ProfesoresResource {
 
     }
     
-    @POST
-    @Path("insert")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void insert(
-    @FormParam("cedulaProfesor") String cedulaProfesor,
-    @FormParam("nombreProfesor") String nombreProfesor,
-    @FormParam("telefonoProfesor") int telefonoProfesor,
-    @FormParam("emailProfesor") String emailProfesor
+//    @POST
+//    @Path("insert")
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    public void insert(
+//    @FormParam("cedulaProfesor") String cedulaProfesor,
+//    @FormParam("nombreProfesor") String nombreProfesor,
+//    @FormParam("telefonoProfesor") int telefonoProfesor,
+//    @FormParam("emailProfesor") String emailProfesor
+//    
+//    ){
+//        try {
+//            Profesor p1 = new Profesor(0,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
+//            System.out.println("profesror a insertar: "+p1.toString());
+//            Model dm1 = Model.instance();
+//            dm = new Control(dm1);
+//            System.out.println("intenta insertar");
+//            dm.insertarProfesor(p1);
+//        } catch (Exception e) {
+//            
+//        }
+//    }
+//    
+    @GET
+    @Path("insert/{cedulaProfesor}/{nombreProfesor}/{telefonoProfesor}/{emailProfesor}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String insert(
+    @PathParam("cedulaProfesor") String cedulaProfesor,
+    @PathParam("nombreProfesor") String nombreProfesor,
+    @PathParam("telefonoProfesor") int telefonoProfesor,
+    @PathParam("emailProfesor") String emailProfesor
     
     ){
         try {
@@ -74,19 +97,42 @@ public class ProfesoresResource {
             dm = new Control(dm1);
             System.out.println("intenta insertar");
             dm.insertarProfesor(p1);
+            return "bueno";
         } catch (Exception e) {
-            
+            return "malo";
         }
     }
     
-    @POST
-    @Path("update")
-//    @Consumes(MediaType.MULTIPART_FORM_DATA) se usa cuando se envian archivos
-    public void update(
-    @FormParam("cedulaProfesor") String cedulaProfesor,
-    @FormParam("nombreProfesor") String nombreProfesor,
-    @FormParam("telefonoProfesor") int telefonoProfesor,
-    @FormParam("emailProfesor") String emailProfesor
+//    @POST
+//    @Path("update")
+////    @Consumes(MediaType.MULTIPART_FORM_DATA) se usa cuando se envian archivos
+//    public void update(
+//    @FormParam("cedulaProfesor") String cedulaProfesor,
+//    @FormParam("nombreProfesor") String nombreProfesor,
+//    @FormParam("telefonoProfesor") int telefonoProfesor,
+//    @FormParam("emailProfesor") String emailProfesor
+//    
+//    ){
+//        try {
+//            Profesor p1 = new Profesor(0,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
+//            System.out.println("profesror a actualizar: "+p1.toString());
+//            Model dm1 = Model.instance();
+//            dm = new Control(dm1);
+//            System.out.println("intenta actualizar");
+//            dm.modificarProfesor(p1);
+//        } catch (Exception e) {
+//            
+//        }
+//    }
+    @GET
+    @Path("update/{cedulaProfesor}/{nombreProfesor}/{telefonoProfesor}/{emailProfesor}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String update(
+    @PathParam("cedulaProfesor") String cedulaProfesor,
+    @PathParam("nombreProfesor") String nombreProfesor,
+    @PathParam("telefonoProfesor") int telefonoProfesor,
+    @PathParam("emailProfesor") String emailProfesor
     
     ){
         try {
@@ -96,11 +142,11 @@ public class ProfesoresResource {
             dm = new Control(dm1);
             System.out.println("intenta actualizar");
             dm.modificarProfesor(p1);
+            return "bueno";
         } catch (Exception e) {
-            
+            return "malo";
         }
     }
-    
     
     @DELETE
     @Path("delete/{id}")

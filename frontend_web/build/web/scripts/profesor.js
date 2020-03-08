@@ -122,6 +122,52 @@ function eliminar(x){
     
 }
 
+function guardar(){
+    var cedula = document.getElementById('cedulaProfesor').value;
+    var nombreProfesor = document.getElementById('nombreProfesor').value;
+    var telefonoProfesor = document.getElementById('telefonoProfesor').value;
+    var emailProfesor = document.getElementById('emailProfesor').value;
+    
+    var url = "../api/profesores/insert/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
+         fetch(url,{method: 'GET'}).then(r => {
+        return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            console.log(obj2);
+            addrow();
+            clearparams();
+        }).catch(err => {
+          console.log("Error Reading data " + err);
+          addrow();
+          clearparams();
+        });
+    
+}
+
+function update(){
+    var cedula = document.getElementById('cedulaProfesor').value;
+    var nombreProfesor = document.getElementById('nombreProfesor').value;
+    var telefonoProfesor = document.getElementById('telefonoProfesor').value;
+    var emailProfesor = document.getElementById('emailProfesor').value;
+    
+    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
+         fetch(url,{method: 'GET'}).then(r => {
+        return r.json();
+        }).then(d => {
+            var obj = JSON.stringify(d);
+            var obj2 = JSON.parse(obj);
+            console.log(obj2);
+            addrow();
+            clearparams();
+        }).catch(err => {
+          console.log("Error Reading data " + err);
+          addrow();
+          clearparams();
+        });
+}
+
+
 function editar(x){
     var profesor = document.getElementById(x);
     var list = profesor.childNodes;
@@ -135,8 +181,8 @@ function editar(x){
     document.getElementById('emailProfesor').value=profesor.childNodes[3].innerHTML;
     
     
-    var form = document.getElementById('profesorForm');
-    form.action = "../api/profesores/update";
+//    var form = document.getElementById('profesorForm');
+//    form.action = "../api/profesores/update";
     
     var botonSalirModo = document.getElementById('salirModoEdicion');
     botonSalirModo.style.display = '';
@@ -144,14 +190,15 @@ function editar(x){
     var botonSumit = document.getElementById('registrarActivoBoton');
     botonSumit.innerHTML = 'Editar Profesor';
    document.getElementById("cedulaProfesor").disabled = true;
+   botonSumit.onclick = function(){update();};
     // programar el otro boton para que revierta esos cambios
 }
 
 function salidModoEdicion(){
     clearparams();
     
-    var form = document.getElementById('profesorForm');
-    form.action = "../api/profesores/insert";
+//    var form = document.getElementById('profesorForm');
+//    form.action = "../api/profesores/insert";
     
     var botonSalirModo = document.getElementById('salirModoEdicion');
     botonSalirModo.style.display = 'none';
@@ -159,4 +206,6 @@ function salidModoEdicion(){
     var botonSumit = document.getElementById('registrarActivoBoton');
     botonSumit.innerHTML = 'Registrar Profesor';
    document.getElementById("cedulaProfesor").disabled = false;
+   botonSumit.onclick = function(){guardar();};
+   
 }

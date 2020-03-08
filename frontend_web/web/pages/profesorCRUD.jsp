@@ -23,7 +23,7 @@
     <body onload="creartabla();">
         <%@include file="navBar.jsp"%>
         <div>
-            <form id="profesorForm" method="POST" action="../api/profesores/insert" >
+            <!--form id="profesorForm" method="POST" action="../api/profesores/insert" -->
                 
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -50,13 +50,13 @@
                 </div>
                
  
-                <button type="submit" class="btn btn-primary" id="registrarActivoBoton">
+                <button onclick = 'guardar();' type="submit" class="btn btn-primary" id="registrarActivoBoton">
                     Registrar Profesor
                 </button>
                 <button onclick = 'salidModoEdicion();' class="btn btn-primary" id="salirModoEdicion"  style="display: none">
                     salir de modo edicion 
                 </button>
-            </form>
+            <!--/form-->
         </div>
         <div>
             <table id = "tabla_de_profesores">
@@ -73,12 +73,12 @@
             </table>
         </div>
     </body>
-    <script>
+    <!--script>
         $('#profesorForm').submit(function() {
             this.submit();
             
             addrow();
             clearparams();
         });
-    </script>
+    </script-->
 </html>
