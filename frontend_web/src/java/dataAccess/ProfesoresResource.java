@@ -57,28 +57,7 @@ public class ProfesoresResource {
 
     }
     
-//    @POST
-//    @Path("insert")
-//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    public void insert(
-//    @FormParam("cedulaProfesor") String cedulaProfesor,
-//    @FormParam("nombreProfesor") String nombreProfesor,
-//    @FormParam("telefonoProfesor") int telefonoProfesor,
-//    @FormParam("emailProfesor") String emailProfesor
-//    
-//    ){
-//        try {
-//            Profesor p1 = new Profesor(0,cedulaProfesor,nombreProfesor,telefonoProfesor,emailProfesor);
-//            System.out.println("profesror a insertar: "+p1.toString());
-//            Model dm1 = Model.instance();
-//            dm = new Control(dm1);
-//            System.out.println("intenta insertar");
-//            dm.insertarProfesor(p1);
-//        } catch (Exception e) {
-//            
-//        }
-//    }
-//    
+ 
     @GET
     @Path("insert/{cedulaProfesor}/{nombreProfesor}/{telefonoProfesor}/{emailProfesor}")
     @Produces(MediaType.APPLICATION_JSON)
