@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="styles/login.css" rel="stylesheet" type="text/css"/>
-        <meta http-equiv = "refresh" content = "1; url = pages/profesorCRUD.jsp" />
+        <meta http-equiv = "refresh" content = "1; url = pages/login.jsp" />
         <title>JSP Page</title>
     </head>
     <body>
