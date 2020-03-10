@@ -65,14 +65,16 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
 
         jMenuBar1.setFocusCycleRoot(true);
         jMenuBar1.setName(""); // NOI18N
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/002-presentation.png"))); // NOI18N
         jMenu2.setText("Profesores");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/maintenance.png"))); // NOI18N
         jMenuItem1.setText("Mantenimiento");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,8 +85,10 @@ public class MenuView extends javax.swing.JFrame implements java.util.Observer {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/001-book.png"))); // NOI18N
         jMenu3.setText("Cursos");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/maintenance.png"))); // NOI18N
         jMenuItem2.setText("Mantenimiento");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

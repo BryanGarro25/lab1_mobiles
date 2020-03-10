@@ -52,13 +52,15 @@ public class CursoController {
                 break;
             case Frontend_desktop.MODO_EDITAR:
                 result = domainModel.modificarCurso(curso);
-                Frontend_desktop.CURSOS_CONTROLLER.refrescarBusqueda();
-                model.setModo(Frontend_desktop.MODO_AGREGAR);
-                model.setCurrent(new Curso());
-                this.hide();
-                model.commit();
+                if (result == 1) {
+                    Frontend_desktop.CURSOS_CONTROLLER.refrescarBusqueda();
+                    model.setModo(Frontend_desktop.MODO_AGREGAR);
+                    model.setCurrent(new Curso());
+                    this.hide();
+                    model.commit();
+                }
                 break;
-                  
+
         }
         return result;
     }

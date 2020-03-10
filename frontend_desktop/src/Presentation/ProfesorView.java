@@ -40,7 +40,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        cedulaLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -54,9 +54,10 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Profesor");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/people.png"))); // NOI18N
         jLabel1.setText("Datos del Profesor");
 
-        jLabel2.setText("Cedula");
+        cedulaLbl.setText("Cedula");
 
         jLabel3.setText("Nombre");
 
@@ -64,13 +65,15 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
 
         jLabel5.setText("Email");
 
-        jButton1.setText("Cancelar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/cancel.png"))); // NOI18N
+        jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentation/Iconos/save.png"))); // NOI18N
         jButton2.setText("Guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,29 +87,26 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cedulaFld)
-                    .addComponent(nombreFld)
-                    .addComponent(telefonoFld)
-                    .addComponent(emailFld, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(73, 73, 73))))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cedulaLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(40, 40, 40)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cedulaFld)
+                                .addComponent(nombreFld)
+                                .addComponent(telefonoFld)
+                                .addComponent(emailFld, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +115,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(cedulaLbl)
                     .addComponent(cedulaFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -129,10 +129,10 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(emailFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(18, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -204,9 +204,9 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     boolean validar() {
         boolean error = false;
 
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_OK);
         if (this.cedulaFld.getText().isEmpty()) {
-            this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+            this.cedulaLbl.setForeground(Frontend_desktop.COLOR_ERROR);
             this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
             error = true;
         }
@@ -233,18 +233,27 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     }
 
     public void errorCedula() {
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_OK);
-        this.jLabel2.setForeground(Frontend_desktop.COLOR_ERROR);
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_OK);
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_ERROR);
         this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_ERROR, 1));
 
     }
+
+    public void limpiarErrores() {
+        // this.cedulaFld.setForeground(Frontend_desktop.COLOR_OK);
+        this.cedulaFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.nombreFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.emailFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.telefonoFld.setBorder(BorderFactory.createLineBorder(Frontend_desktop.COLOR_OK, 1));
+        this.cedulaLbl.setForeground(Frontend_desktop.COLOR_OK);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cedulaFld;
+    private javax.swing.JLabel cedulaLbl;
     private javax.swing.JTextField emailFld;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -253,6 +262,7 @@ public class ProfesorView extends javax.swing.JDialog implements java.util.Obser
     // End of variables declaration//GEN-END:variables
     @Override
     public void update(Observable o, Object arg) {
+        this.limpiarErrores();
         Profesor current = model.getCurrent();
         this.fromProfesor(current);
     }
