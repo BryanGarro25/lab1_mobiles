@@ -28,7 +28,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Codigo del Curso</label>
-                      <input type="text" class="form-control" id="codigoCurso" placeholder="codigo" name = "codigoCurso">
+                      <input type="text" class="form-control" id="codigoCurso" placeholder="Código" name = "codigoCurso">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputPassword4">Nombre</label>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputPassword4">Total de Creditos</label>
-                      <input type="email" class="form-control" id="creditosCurso" placeholder="Ingrese total de creditos" name="creditosCurso">
+                      <input type="email" class="form-control" id="creditosCurso" placeholder="Ingrese total de crèditos" name="creditosCurso">
                     </div>
                 </div>
                
@@ -58,15 +58,15 @@
                 </button>
             <!--/form-->
         </div>
-        <div>
-            <table id = "tabla_de_cursos">
-                <thead>
-                    <th>Codigo</th>
+        <div class="table-responsive">
+            <table id = "tabla_de_cursos" class="table table-striped table-hover" style="text-align: center">
+                <thead class="thead-dark">
+                    <th>Código</th>
                     <th>Nombre</th>
                     <th>Horas Semanales</th>
-                    <th>Creditos</th>
-                    <th>Accion</th>
-                    <th>Accion</th>
+                    <th>Créditos</th>
+                    <th>Acción</th>
+                    <th>Acción</th>
                 </thead>
                     <tbody id = "tbody_tabla_de_cursos">
                     </tbody>    
