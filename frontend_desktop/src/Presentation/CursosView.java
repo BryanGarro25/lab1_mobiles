@@ -7,6 +7,7 @@ package Presentation;
 
 import Control.CursosController;
 import Model.CursosModel;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.Observable;
 import java.util.logging.Level;
@@ -57,6 +58,11 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
         seachFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 seachFldFocusLost(evt);
+            }
+        });
+        seachFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                seachFldKeyPressed(evt);
             }
         });
 
@@ -148,11 +154,12 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(seachBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(seachFld, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3)
+                        .addComponent(seachBtn)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(8, 8, 8)
@@ -196,8 +203,8 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void seachBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBtnActionPerformed
-   
-            controller.filtrar(this.seachFld.getText());
+
+        controller.filtrar(this.seachFld.getText());
     }//GEN-LAST:event_seachBtnActionPerformed
 
     private void seachFldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seachFldFocusLost
@@ -205,6 +212,12 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
             controller.refrescarBusqueda();
         }
     }//GEN-LAST:event_seachFldFocusLost
+
+    private void seachFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_seachFldKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           controller.filtrar(this.seachFld.getText());
+       }
+    }//GEN-LAST:event_seachFldKeyPressed
     CursosController controller;
     CursosModel model;
 
@@ -234,6 +247,7 @@ public class CursosView extends javax.swing.JInternalFrame implements java.util.
 
     @Override
     public void update(Observable o, Object arg) {
+        this.jTable2.getTableHeader().setReorderingAllowed(false);
         this.jTable2.setModel(model.getCursos());
     }
 }

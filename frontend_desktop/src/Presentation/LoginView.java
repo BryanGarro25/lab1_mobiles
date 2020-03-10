@@ -12,6 +12,7 @@ package Presentation;
 import BusinessLogic.Usuario;
 import Control.LoginController;
 import Model.LoginModel;
+import com.sun.glass.events.KeyEvent;
 import frontend_desktop.Frontend_desktop;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -33,7 +34,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     public LoginView() {
         initComponents();
         this.test();
-     
+
     }
 
     /**
@@ -64,6 +65,11 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
 
         password.setForeground(new java.awt.Color(0, 0, 0));
         password.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
 
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,8 +146,8 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         if (this.validar()) {
             try {
 
-                if(!this.controller.login(this.toUsuario())){
-                     JOptionPane.showMessageDialog(this, "Datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                if (!this.controller.login(this.toUsuario())) {
+                    JOptionPane.showMessageDialog(this, "Datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 //Application.APPLICATION_VIEW.validar();
             } catch (Exception ex) {
@@ -153,8 +159,26 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     }//GEN-LAST:event_loginActionPerformed
 
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
-       this.controller.exit();
+        this.controller.exit();
     }//GEN-LAST:event_closeActionPerformed
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (this.validar()) {
+                try {
+
+                    if (!this.controller.login(this.toUsuario())) {
+                        JOptionPane.showMessageDialog(this, "Datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                    //Application.APPLICATION_VIEW.validar();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_passwordKeyPressed
     boolean validar() {
         boolean error = false;
 

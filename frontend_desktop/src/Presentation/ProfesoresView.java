@@ -7,6 +7,7 @@ package Presentation;
 
 import Control.ProfesoresController;
 import Model.ProfesoresModel;
+import java.awt.event.KeyEvent;
 import java.util.Observable;
 import javax.swing.JOptionPane;
 
@@ -38,6 +39,7 @@ public class ProfesoresView extends javax.swing.JInternalFrame implements java.u
 
     @Override
     public void update(Observable o, Object arg) {
+        this.jTable1.getTableHeader().setReorderingAllowed(false);
         if (model.getProfesores() != null) {
             this.jTable1.setModel(model.getProfesores());
         }
@@ -70,6 +72,11 @@ public class ProfesoresView extends javax.swing.JInternalFrame implements java.u
         searchFld.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 searchFldFocusLost(evt);
+            }
+        });
+        searchFld.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchFldKeyPressed(evt);
             }
         });
 
@@ -217,6 +224,12 @@ public class ProfesoresView extends javax.swing.JInternalFrame implements java.u
            controller.refrescarBusqueda();
        }
     }//GEN-LAST:event_searchFldFocusLost
+
+    private void searchFldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFldKeyPressed
+         if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+             this.controller.filtrar(this.searchFld.getText());
+         }
+    }//GEN-LAST:event_searchFldKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
