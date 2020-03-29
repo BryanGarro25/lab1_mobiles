@@ -11,8 +11,8 @@
  */
 
 function creartabla(){
-        var url = "../api/cursos/all";
-      
+//        var url = "../api/cursos/all";
+        var url = "../servletCursos";
         fetch(url).then(r => {
             return r.json();
         }).then(d => {
@@ -111,8 +111,11 @@ function clearparams(){
 
 function eliminar(x){
     console.log('elimina: '+x);
-     var url = "../api/cursos/delete/"+x ;
-
+//     var url = "../api/cursos/delete/"+x ;
+    var aux = "../servletCursos?" +
+            "x={0}";
+    var url = aux.format(
+            x);
      fetch(url,{method: 'DELETE'}).then(r => {
         return r.json();
         }).then(d => {
@@ -129,9 +132,12 @@ function guardar(){
     var nombreCurso = document.getElementById('nombreCurso').value;
     var horasSemanales = document.getElementById('horasSemanales').value;
     var creditosCurso = document.getElementById('creditosCurso').value;
-    
-    var url = "../api/cursos/insert/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
-         fetch(url,{method: 'GET'}).then(r => {
+    var aux = "../servletCursos?" +
+            "codigoCurso={0}&nombreCurso={1}&horasSemanales={2}&creditosCurso={3}";
+    var url = aux.format(
+            codigoCurso, nombreCurso, horasSemanales,creditosCurso);
+//    var url = "../api/cursos/insert/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
+         fetch(url,{method: 'POST'}).then(r => {
         return r.json();
         }).then(d => {
             var obj = JSON.stringify(d);
@@ -152,10 +158,13 @@ function update(x){
     var nombreCurso = document.getElementById('nombreCurso').value;
     var horasSemanales = document.getElementById('horasSemanales').value;
     var creditosCurso = document.getElementById('creditosCurso').value;
-    
-    var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso+"/"+x;
+     var aux = "../servletCursos?" +
+            "codigoCurso={0}&nombreCurso={1}&horasSemanales={2}&creditosCurso={3}&x={4}";
+    var url = aux.format(
+            codigoCurso, nombreCurso, horasSemanales,creditosCurso,x);
+//    var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso+"/"+x;
     console.log('URL:'+ url);
-         fetch(url,{method: 'GET'}).then(r => {
+         fetch(url,{method: 'PUT'}).then(r => {
         return r.json();
         }).then(d => {
             var obj = JSON.stringify(d);
@@ -213,3 +222,11 @@ function salidModoEdicion(){
    botonSumit.onclick = function(){guardar();};
    
 }
+
+String.prototype.format = function () {
+    var a = this;
+    for (var k in arguments) {
+        a = a.replace("{" + k + "}", arguments[k]);
+    }
+    return a;
+};

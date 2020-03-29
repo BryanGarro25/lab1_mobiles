@@ -5,8 +5,8 @@
  */
 
 function creartabla(){
-        var url = "../api/profesores/all";
-      
+//        var url = "../api/profesores/all";
+      var url = "../servletProfesores";
         fetch(url).then(r => {
             return r.json();
         }).then(d => {
@@ -109,8 +109,11 @@ function clearparams(){
 
 function eliminar(x){
     console.log('elimina: '+x);
-     var url = "../api/profesores/delete/"+x ;
-
+//     var url = "../api/profesores/delete/"+x ;
+  var aux = "../servletProfesores?" +
+            "x={0}";
+    var url = aux.format(
+            x);
      fetch(url,{method: 'DELETE'}).then(r => {
         return r.json();
         }).then(d => {
@@ -127,9 +130,12 @@ function guardar(){
     var nombreProfesor = document.getElementById('nombreProfesor').value;
     var telefonoProfesor = document.getElementById('telefonoProfesor').value;
     var emailProfesor = document.getElementById('emailProfesor').value;
-    
-    var url = "../api/profesores/insert/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
-         fetch(url,{method: 'GET'}).then(r => {
+        var aux = "../servletProfesores?" +
+            "cedula={0}&nombreProfesor={1}&telefonoProfesor={2}&emailProfesor={3}";
+    var url = aux.format(
+            cedula, nombreProfesor, telefonoProfesor,emailProfesor);
+//    var url = "../api/profesores/insert/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
+         fetch(url,{method: 'POST'}).then(r => {
         return r.json();
         }).then(d => {
             var obj = JSON.stringify(d);
@@ -150,9 +156,12 @@ function update(x){
     var nombreProfesor = document.getElementById('nombreProfesor').value;
     var telefonoProfesor = document.getElementById('telefonoProfesor').value;
     var emailProfesor = document.getElementById('emailProfesor').value;
-    
-    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor+"/"+x;
-         fetch(url,{method: 'GET'}).then(r => {
+           var aux = "../servletProfesores?" +
+            "cedula={0}&nombreProfesor={1}&telefonoProfesor={2}&emailProfesor={3}";
+    var url = aux.format(
+            cedula, nombreProfesor, telefonoProfesor,emailProfesor);
+//    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor+"/"+x;
+         fetch(url,{method: 'PUT'}).then(r => {
         return r.json();
         }).then(d => {
             var obj = JSON.stringify(d);
@@ -209,3 +218,11 @@ function salidModoEdicion(){
    botonSumit.onclick = function(){guardar();};
    
 }
+
+String.prototype.format = function () {
+    var a = this;
+    for (var k in arguments) {
+        a = a.replace("{" + k + "}", arguments[k]);
+    }
+    return a;
+};

@@ -23,16 +23,16 @@
     <body onload="creartabla();">
         <%@include file="navBar.jsp"%>
         <div>
-            <!--form id="profesorForm" method="POST" action="../api/profesores/insert" -->
+            <!--form id="profesorForm" method="POST" action="../servletCursos" -->
                 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Codigo del Curso</label>
-                      <input type="text" class="form-control" id="codigoCurso" placeholder="Código" name = "codigoCurso">
+                      <input type="text" class="form-control" id="codigoCurso" placeholder="Código" name = "codigoCurso_name">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputPassword4">Nombre</label>
-                      <input type="text" class="form-control" id="nombreCurso" placeholder="Nombre" name="nombreCurso">
+                      <input type="text" class="form-control" id="nombreCurso" placeholder="Nombre" name="nombreCurso_name">
                     </div>
                 </div>
                 
@@ -41,11 +41,11 @@
                  <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Horas Semanales</label>
-                      <input type="text" class="form-control" id="horasSemanales" placeholder="Ingrese total de horas semanales" name = "horasSemanales">
+                      <input type="text" class="form-control" id="horasSemanales" placeholder="Ingrese total de horas semanales" name = "horasSemanales_name">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputPassword4">Total de Creditos</label>
-                      <input type="email" class="form-control" id="creditosCurso" placeholder="Ingrese total de crèditos" name="creditosCurso">
+                      <input type="text" class="form-control" id="creditosCurso" placeholder="Ingrese total de crèditos" name="creditosCurso_name">
                     </div>
                 </div>
                
@@ -73,12 +73,12 @@
             </table>
         </div>
     </body>
-    <!--script>
+    <script>
         $('#profesorForm').submit(function() {
             this.submit();
             
             addrow();
             clearparams();
         });
-    </script-->
+    </script>
 </html>
