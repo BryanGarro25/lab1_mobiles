@@ -123,6 +123,10 @@ function eliminar(x){
             var obj2 = JSON.parse(obj);
             console.log(obj2);
             addrow();
+            if(obj2===1)
+                alert("curso eliminado con exito");
+            else
+                alert("fallo al eliminar curso ");
         });//second then
     
 }
@@ -132,24 +136,31 @@ function guardar(){
     var nombreCurso = document.getElementById('nombreCurso').value;
     var horasSemanales = document.getElementById('horasSemanales').value;
     var creditosCurso = document.getElementById('creditosCurso').value;
-    var aux = "../servletCursos?" +
-            "codigoCurso={0}&nombreCurso={1}&horasSemanales={2}&creditosCurso={3}";
-    var url = aux.format(
-            codigoCurso, nombreCurso, horasSemanales,creditosCurso);
-//    var url = "../api/cursos/insert/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
-         fetch(url,{method: 'POST'}).then(r => {
-        return r.json();
-        }).then(d => {
-            var obj = JSON.stringify(d);
-            var obj2 = JSON.parse(obj);
-            console.log(obj2);
-            addrow();
-            clearparams();
-        }).catch(err => {
-          console.log("Error Reading data " + err);
-          addrow();
-          clearparams();
-        });
+    if((codigoCurso==="") ||(nombreCurso==="")||(horasSemanales==="")||(creditosCurso==="") ){
+        alert("DEBE LLENAR TODOS LOS CAMPOS");
+    }else{
+        var aux = "../servletCursos?" +
+                "codigoCurso={0}&nombreCurso={1}&horasSemanales={2}&creditosCurso={3}";
+        var url = aux.format(
+                codigoCurso, nombreCurso, horasSemanales,creditosCurso);
+    //    var url = "../api/cursos/insert/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso;
+        fetch(url,{method: 'POST'}).then(r => {
+       return r.json();
+       }).then(d => {
+           var obj = JSON.stringify(d);
+           var obj2 = JSON.parse(obj);
+           console.log(obj2);
+           if(obj2 ==='insertado')
+               alert("curso insertado");
+           addrow();
+           clearparams();
+       }).catch(err => {
+         console.log("Error Reading data " + err);
+         alert("error al insertar curso");
+         addrow();
+         clearparams();
+       });
+    }
     
 }
 
@@ -158,26 +169,32 @@ function update(x){
     var nombreCurso = document.getElementById('nombreCurso').value;
     var horasSemanales = document.getElementById('horasSemanales').value;
     var creditosCurso = document.getElementById('creditosCurso').value;
-     var aux = "../servletCursos?" +
+    if((codigoCurso==="") ||(nombreCurso==="")||(horasSemanales==="")||(creditosCurso==="") ){
+        alert("DEBE LLENAR TODOS LOS CAMPOS");
+    }else{
+        var aux = "../servletCursos?" +
             "codigoCurso={0}&nombreCurso={1}&horasSemanales={2}&creditosCurso={3}&x={4}";
-    var url = aux.format(
+        var url = aux.format(
             codigoCurso, nombreCurso, horasSemanales,creditosCurso,x);
-//    var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso+"/"+x;
-    console.log('URL:'+ url);
+//       var url = "../api/cursos/update/"+codigoCurso+"/"+nombreCurso+"/"+horasSemanales+"/"+creditosCurso+"/"+x;
+        console.log('URL:'+ url);
          fetch(url,{method: 'PUT'}).then(r => {
         return r.json();
         }).then(d => {
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
             console.log(obj2);
+            if(obj2 === "actualizado con exito")
+                alert(obj2);
             addrow();
             clearparams();
+            salidModoEdicion();
         }).catch(err => {
           console.log("Error Reading data " + err);
           addrow();
           clearparams();
         });
-    
+    }
 }
 
 

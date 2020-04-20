@@ -47,34 +47,44 @@ public class servletProfesores extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        System.out.println("intenta insertar");
-        String cedula = request.getParameter("codigoCurso");
-        String nombreProfesor = request.getParameter("nombreCurso");
-        int telefonoProfesor = Integer.parseInt(request.getParameter("horasSemanales"));
-        String emailProfesor = request.getParameter("creditosCurso");
+        System.out.println("servlet insertar");
         
-         Profesor c1 = new Profesor(0,cedula,nombreProfesor,telefonoProfesor,emailProfesor);
+        String cedula = request.getParameter("cedula");
+        String nombreProfesor = request.getParameter("nombreProfesor");
+        int telefonoProfesor = Integer.parseInt(request.getParameter("telefonoProfesor"));
+        String emailProfesor = request.getParameter("emailProfesor");
+        
+        System.out.println("servlet insertar");
+        Profesor c1 = new Profesor(0,cedula,nombreProfesor,telefonoProfesor,emailProfesor);
 //            System.out.println("curso a insertar: "+c1.toString());
             Model dm1 = Model.instance();
             Control dm = new Control(dm1);
 //            System.out.println("intenta insertar");
             dm.insertarProfesor(c1);
+            String json = new Gson().toJson("insertado");
+            response.getWriter().println(json);
     }
     
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cedula = request.getParameter("codigoCurso");
-        String nombreProfesor = request.getParameter("nombreCurso");
-        int telefonoProfesor = Integer.parseInt(request.getParameter("horasSemanales"));
-        String emailProfesor = request.getParameter("creditosCurso");
-         int x = Integer.parseInt(request.getParameter("x"));
+        
+
+        String cedula = request.getParameter("cedula");
+        String nombreProfesor = request.getParameter("nombreProfesor");
+        int telefonoProfesor = Integer.parseInt(request.getParameter("telefonoProfesor"));
+        String emailProfesor = request.getParameter("emailProfesor");
+
+        int x = Integer.parseInt(request.getParameter("x"));
+         
         Profesor c1 = new Profesor(x,cedula,nombreProfesor,telefonoProfesor,emailProfesor);
 //        System.out.println("curso a insertar: "+c1.toString());
         Model dm1 = Model.instance();
         Control dm = new Control(dm1);
 //        System.out.println("intenta insertar");
         dm.modificarProfesor(c1);
+        String json = new Gson().toJson("actualizado con exito");
+        response.getWriter().println(json);
     }
     
     @Override

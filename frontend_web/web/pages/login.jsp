@@ -20,7 +20,7 @@
             <div id="contents">
                 <div class="title">Inicio de sesión</div>
                 <div class="form">
-                    <form action="../api/login/tryLogin" method="POST">
+                    <form action="../ServletLogin" method="POST">
                         <div class="wrapper-inputs">
                             <input type="text" class="username-input" placeholder="Usuario/ID" name="username"/>
                             <input type="password" class="password-input" placeholder="Contraseña" name="password" />

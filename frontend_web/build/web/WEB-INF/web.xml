@@ -8,6 +8,10 @@
         <servlet-name>servletProfesores</servlet-name>
         <servlet-class>servlets.servletProfesores</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletLogin</servlet-name>
+        <servlet-class>servlets.ServletLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servletCursos</servlet-name>
         <url-pattern>/servletCursos</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>servletProfesores</servlet-name>
         <url-pattern>/servletProfesores</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletLogin</servlet-name>
+        <url-pattern>/ServletLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

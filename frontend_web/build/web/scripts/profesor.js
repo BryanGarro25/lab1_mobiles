@@ -120,7 +120,12 @@ function eliminar(x){
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
             console.log(obj2);
+            
             addrow();
+            if(obj2===1)
+                alert("profesor eliminado con exito");
+            else
+                alert("fallo al eliminar profesor ");
         });//second then
     
 }
@@ -130,9 +135,13 @@ function guardar(){
     var nombreProfesor = document.getElementById('nombreProfesor').value;
     var telefonoProfesor = document.getElementById('telefonoProfesor').value;
     var emailProfesor = document.getElementById('emailProfesor').value;
+    console.log(emailProfesor);
+    if((cedula==="") ||(nombreProfesor==="")||(telefonoProfesor==="")||(emailProfesor==="") ){
+        alert("DEBE LLENAR TODOS LOS CAMPOS");
+    }else{
         var aux = "../servletProfesores?" +
             "cedula={0}&nombreProfesor={1}&telefonoProfesor={2}&emailProfesor={3}";
-    var url = aux.format(
+        var url = aux.format(
             cedula, nombreProfesor, telefonoProfesor,emailProfesor);
 //    var url = "../api/profesores/insert/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor;
          fetch(url,{method: 'POST'}).then(r => {
@@ -141,14 +150,17 @@ function guardar(){
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
             console.log(obj2);
+            if(obj2 ==='insertado')
+                alert("profesor insertado");
             addrow();
             clearparams();
         }).catch(err => {
           console.log("Error Reading data " + err);
+          alert("error al insertar profesor");
           addrow();
           clearparams();
         });
-    
+    }
 }
 
 function update(x){
@@ -156,24 +168,32 @@ function update(x){
     var nombreProfesor = document.getElementById('nombreProfesor').value;
     var telefonoProfesor = document.getElementById('telefonoProfesor').value;
     var emailProfesor = document.getElementById('emailProfesor').value;
+    if((cedula==="") ||(nombreProfesor==="")||(telefonoProfesor==="")||(emailProfesor==="") ){
+        alert("DEBE LLENAR TODOS LOS CAMPOS");
+    }else{
            var aux = "../servletProfesores?" +
-            "cedula={0}&nombreProfesor={1}&telefonoProfesor={2}&emailProfesor={3}";
+            "cedula={0}&nombreProfesor={1}&telefonoProfesor={2}&emailProfesor={3}&x={4}";
     var url = aux.format(
-            cedula, nombreProfesor, telefonoProfesor,emailProfesor);
+            cedula, nombreProfesor, telefonoProfesor,emailProfesor,x);
 //    var url = "../api/profesores/update/"+cedula+"/"+nombreProfesor+"/"+telefonoProfesor+"/"+emailProfesor+"/"+x;
+        console.log(url);
          fetch(url,{method: 'PUT'}).then(r => {
-        return r.json();
+         return r.json();
         }).then(d => {
             var obj = JSON.stringify(d);
             var obj2 = JSON.parse(obj);
             console.log(obj2);
+            if(obj2 === "actualizado con exito")
+                alert(obj2);
             addrow();
             clearparams();
+            salidModoEdicion();
         }).catch(err => {
           console.log("Error Reading data " + err);
           addrow();
           clearparams();
         });
+    }
 }
 
 
