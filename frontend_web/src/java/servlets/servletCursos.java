@@ -60,6 +60,8 @@ public class servletCursos extends HttpServlet {
             Control dm = new Control(dm1);
 //            System.out.println("intenta insertar");
             dm.insertarCurso(c1);
+            String json = new Gson().toJson("insertado");
+            response.getWriter().println(json);
     }
     
     @Override
@@ -70,12 +72,14 @@ public class servletCursos extends HttpServlet {
         int horasSemanales = Integer.parseInt(request.getParameter("horasSemanales"));
         int creditosCurso = Integer.parseInt(request.getParameter("creditosCurso"));
          int x = Integer.parseInt(request.getParameter("x"));
-        Curso c1 = new Curso(x,codigoCurso,nombreCurso,horasSemanales,creditosCurso);
+        Curso c1 = new Curso(x,codigoCurso,nombreCurso,creditosCurso,horasSemanales);
         System.out.println("curso a insertar: "+c1.toString());
         Model dm1 = Model.instance();
         Control dm = new Control(dm1);
         System.out.println("intenta insertar");
         dm.modificarCurso(c1);
+        String json = new Gson().toJson("actualizado con exito");
+        response.getWriter().println(json);
     }
     
     @Override
